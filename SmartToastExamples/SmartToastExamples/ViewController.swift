@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SmartToast("Hello").show()
+        SmartToast("Hello", sender: self).show()
     }
 }
 

@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2713A99B2209236700B149C5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2713A99A2209236700B149C5 /* UIViewController+Extension.swift */; };
 		27D9BD012208FFCC008064DF /* SmartToast.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D9BCFF2208FFCC008064DF /* SmartToast.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27D9BD0822090D1E008064DF /* SmartToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9BD0722090D1E008064DF /* SmartToast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2713A99A2209236700B149C5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		27D9BCFC2208FFCC008064DF /* SmartToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmartToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D9BCFF2208FFCC008064DF /* SmartToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmartToast.h; sourceTree = "<group>"; };
 		27D9BD002208FFCC008064DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -29,6 +31,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2713A99922091B9200B149C5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		27D9BCF22208FFCC008064DF = {
 			isa = PBXGroup;
 			children = (
@@ -48,9 +57,11 @@
 		27D9BCFE2208FFCC008064DF /* SmartToast */ = {
 			isa = PBXGroup;
 			children = (
+				27D9BD0722090D1E008064DF /* SmartToast.swift */,
+				2713A99A2209236700B149C5 /* UIViewController+Extension.swift */,
+				2713A99922091B9200B149C5 /* Presenter */,
 				27D9BCFF2208FFCC008064DF /* SmartToast.h */,
 				27D9BD002208FFCC008064DF /* Info.plist */,
-				27D9BD0722090D1E008064DF /* SmartToast.swift */,
 			);
 			path = SmartToast;
 			sourceTree = "<group>";
@@ -134,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2713A99B2209236700B149C5 /* UIViewController+Extension.swift in Sources */,
 				27D9BD0822090D1E008064DF /* SmartToast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

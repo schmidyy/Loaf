@@ -8,7 +8,9 @@
 
 import UIKit
 
-public class SmartToast {
+final public class SmartToast {
+    
+    // MARK: - Specifiers
     public struct Style {
         public enum IconAlignment {
             case left
@@ -16,6 +18,8 @@ public class SmartToast {
         }
         
         let backgroundColor: UIColor
+        let textColor: UIColor
+        let font: UIFont
         let icon: UIImage
         let iconAlignment: IconAlignment
     }
@@ -28,13 +32,62 @@ public class SmartToast {
         case custom(style: Style)
     }
     
-    let message: String
-    
-    public init(_ message: String, state: State = .info) {
-        self.message = message
+    public enum Location {
+        case top
+        case bottom
     }
     
-    public func show() {
+    public enum Direction {
+        case left
+        case right
+        case vertical
+        case fade
+    }
+    
+    public enum Duration: TimeInterval {
+        public typealias RawValue = TimeInterval
+        
+        case short = 2.0
+        case average = 4.0
+        case long = 8.0
+    }
+    
+    // MARK: - Properties
+    var message: String
+    var state: State
+    var location: Location
+    var duration: Duration = .average
+    var presentingDirection: Direction = .vertical
+    var dismissingDirection: Direction = .vertical
+    
+    private let sender: UIViewController
+    
+    // MARK: - Public methods
+    public init(_ message: String, state: State = .info, location: Location = .bottom, sender: UIViewController) {
+        self.message = message
+        self.state = state
+        self.location = location
+        self.sender = sender
+    }
+    
+    public func show(_ duration: Duration = .average) {
+        self.duration = duration
         print(message)
+        
+        let toastVC = SmartToastViewController(self)
+        sender.presentToast(toastVC)
+    }
+}
+
+final class SmartToastViewController: UIViewController {
+    let toast: SmartToast
+    
+    init(_ toast: SmartToast) {
+        self.toast = toast
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
