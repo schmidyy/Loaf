@@ -1,6 +1,6 @@
 //
 //  UIViewController+Extension.swift
-//  SmartToast
+//  Loaf
 //
 //  Created by Mat Schmid on 2019-02-04.
 //  Copyright © 2019 Mat Schmid. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 
 extension UIViewController {
-    func presentToast(_ smartToastViewController: SmartToastViewController) {
+    func presentToast(_ smartToastViewController: LoafViewController) {
         let transitionDelegate = Manager(direction: .vertical, size: smartToastViewController.preferredContentSize)
         smartToastViewController.transitioningDelegate = transitionDelegate
         smartToastViewController.modalPresentationStyle = .custom

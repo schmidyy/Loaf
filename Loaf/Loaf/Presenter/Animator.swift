@@ -1,6 +1,6 @@
 //
 //  Animator.swift
-//  SmartToast
+//  Loaf
 //
 //  Created by Mat Schmid on 2019-02-05.
 //  Copyright © 2019 Mat Schmid. All rights reserved.
@@ -11,9 +11,9 @@ import UIKit
 final class Animator: NSObject {
     private let presenting: Bool
     private let duration: TimeInterval
-    private let direction: SmartToast.Direction
+    private let direction: Loaf.Direction
     
-    init(presenting: Bool, duration: TimeInterval, direction: SmartToast.Direction) {
+    init(presenting: Bool, duration: TimeInterval, direction: Loaf.Direction) {
         self.presenting = presenting
         self.duration = duration
         self.direction = direction

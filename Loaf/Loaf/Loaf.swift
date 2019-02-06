@@ -1,6 +1,6 @@
 //
-//  SmartToast.swift
-//  SmartToast
+//  Loaf.swift
+//  Loaf
 //
 //  Created by Mat Schmid on 2019-02-04.
 //  Copyright © 2019 Mat Schmid. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final public class SmartToast {
+final public class Loaf {
     
     // MARK: - Specifiers
     public struct Style {
@@ -87,13 +87,13 @@ final public class SmartToast {
     public func show(_ duration: Duration = .average) {
         self.duration = duration
         
-        let toastVC = SmartToastViewController(self)
+        let toastVC = LoafViewController(self)
         sender.presentToast(toastVC)
     }
 }
 
-final class SmartToastViewController: UIViewController {
-    var toast: SmartToast
+final class LoafViewController: UIViewController {
+    var toast: Loaf
     
     let label = UILabel()
     let imageView = UIImageView(image: nil)
@@ -102,7 +102,7 @@ final class SmartToastViewController: UIViewController {
     
     private var contentView = UIView()
     
-    init(_ toast: SmartToast) {
+    init(_ toast: Loaf) {
         self.toast = toast
         super.init(nibName: nil, bundle: nil)
         

@@ -11,8 +11,8 @@
 		277E5A46220A27A90054B81E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A45220A27A90054B81E /* Manager.swift */; };
 		277E5A48220A28580054B81E /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A47220A28580054B81E /* Controller.swift */; };
 		277E5A4A220A2A840054B81E /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A49220A2A840054B81E /* Animator.swift */; };
-		27D9BD012208FFCC008064DF /* SmartToast.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D9BCFF2208FFCC008064DF /* SmartToast.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27D9BD0822090D1E008064DF /* SmartToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9BD0722090D1E008064DF /* SmartToast.swift */; };
+		27D9BD012208FFCC008064DF /* Loaf.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D9BCFF2208FFCC008064DF /* Loaf.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27D9BD0822090D1E008064DF /* Loaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9BD0722090D1E008064DF /* Loaf.swift */; };
 		27FAE961220B63A9001D4E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27FAE960220B63A9001D4E72 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -21,10 +21,10 @@
 		277E5A45220A27A90054B81E /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		277E5A47220A28580054B81E /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		277E5A49220A2A840054B81E /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
-		27D9BCFC2208FFCC008064DF /* SmartToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmartToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		27D9BCFF2208FFCC008064DF /* SmartToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SmartToast.h; sourceTree = "<group>"; };
+		27D9BCFC2208FFCC008064DF /* Loaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Loaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27D9BCFF2208FFCC008064DF /* Loaf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Loaf.h; sourceTree = "<group>"; };
 		27D9BD002208FFCC008064DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27D9BD0722090D1E008064DF /* SmartToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartToast.swift; sourceTree = "<group>"; };
+		27D9BD0722090D1E008064DF /* Loaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loaf.swift; sourceTree = "<group>"; };
 		27FAE960220B63A9001D4E72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +52,7 @@
 		27D9BCF22208FFCC008064DF = {
 			isa = PBXGroup;
 			children = (
-				27D9BCFE2208FFCC008064DF /* SmartToast */,
+				27D9BCFE2208FFCC008064DF /* Loaf */,
 				27D9BCFD2208FFCC008064DF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,22 +60,22 @@
 		27D9BCFD2208FFCC008064DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27D9BCFC2208FFCC008064DF /* SmartToast.framework */,
+				27D9BCFC2208FFCC008064DF /* Loaf.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		27D9BCFE2208FFCC008064DF /* SmartToast */ = {
+		27D9BCFE2208FFCC008064DF /* Loaf */ = {
 			isa = PBXGroup;
 			children = (
-				27D9BD0722090D1E008064DF /* SmartToast.swift */,
+				27D9BD0722090D1E008064DF /* Loaf.swift */,
 				2713A99A2209236700B149C5 /* UIViewController+Extension.swift */,
 				2713A99922091B9200B149C5 /* Presenter */,
-				27D9BCFF2208FFCC008064DF /* SmartToast.h */,
+				27D9BCFF2208FFCC008064DF /* Loaf.h */,
 				27D9BD002208FFCC008064DF /* Info.plist */,
 				27FAE960220B63A9001D4E72 /* Assets.xcassets */,
 			);
-			path = SmartToast;
+			path = Loaf;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,16 +85,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D9BD012208FFCC008064DF /* SmartToast.h in Headers */,
+				27D9BD012208FFCC008064DF /* Loaf.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		27D9BCFB2208FFCC008064DF /* SmartToast */ = {
+		27D9BCFB2208FFCC008064DF /* Loaf */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27D9BD042208FFCC008064DF /* Build configuration list for PBXNativeTarget "SmartToast" */;
+			buildConfigurationList = 27D9BD042208FFCC008064DF /* Build configuration list for PBXNativeTarget "Loaf" */;
 			buildPhases = (
 				27D9BCF72208FFCC008064DF /* Headers */,
 				27D9BCF82208FFCC008064DF /* Sources */,
@@ -105,9 +105,9 @@
 			);
 			dependencies = (
 			);
-			name = SmartToast;
+			name = Loaf;
 			productName = SmartToast;
-			productReference = 27D9BCFC2208FFCC008064DF /* SmartToast.framework */;
+			productReference = 27D9BCFC2208FFCC008064DF /* Loaf.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -125,7 +125,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 27D9BCF62208FFCC008064DF /* Build configuration list for PBXProject "SmartToast" */;
+			buildConfigurationList = 27D9BCF62208FFCC008064DF /* Build configuration list for PBXProject "Loaf" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -137,7 +137,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				27D9BCFB2208FFCC008064DF /* SmartToast */,
+				27D9BCFB2208FFCC008064DF /* Loaf */,
 			);
 		};
 /* End PBXProject section */
@@ -161,7 +161,7 @@
 				277E5A4A220A2A840054B81E /* Animator.swift in Sources */,
 				2713A99B2209236700B149C5 /* UIViewController+Extension.swift in Sources */,
 				277E5A46220A27A90054B81E /* Manager.swift in Sources */,
-				27D9BD0822090D1E008064DF /* SmartToast.swift in Sources */,
+				27D9BD0822090D1E008064DF /* Loaf.swift in Sources */,
 				277E5A48220A28580054B81E /* Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,14 +302,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SmartToast/Info.plist;
+				INFOPLIST_FILE = Loaf/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.SmartToast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.Loaf;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -329,14 +329,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SmartToast/Info.plist;
+				INFOPLIST_FILE = Loaf/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.SmartToast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.Loaf;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -347,7 +347,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		27D9BCF62208FFCC008064DF /* Build configuration list for PBXProject "SmartToast" */ = {
+		27D9BCF62208FFCC008064DF /* Build configuration list for PBXProject "Loaf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27D9BD022208FFCC008064DF /* Debug */,
@@ -356,7 +356,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27D9BD042208FFCC008064DF /* Build configuration list for PBXNativeTarget "SmartToast" */ = {
+		27D9BD042208FFCC008064DF /* Build configuration list for PBXNativeTarget "Loaf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27D9BD052208FFCC008064DF /* Debug */,

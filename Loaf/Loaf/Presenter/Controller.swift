@@ -1,6 +1,6 @@
 //
 //  Controller.swift
-//  SmartToast
+//  Loaf
 //
 //  Created by Mat Schmid on 2019-02-05.
 //  Copyright © 2019 Mat Schmid. All rights reserved.
@@ -9,13 +9,13 @@
 import UIKit
 
 final class Controller: UIPresentationController {
-    private let direction: SmartToast.Direction
+    private let direction: Loaf.Direction
     private let size: CGSize
     
     init(
         presentedViewController: UIViewController,
         presenting presentingViewController: UIViewController?,
-        direction: SmartToast.Direction,
+        direction: Loaf.Direction,
         size: CGSize) {
         
         self.direction = direction

@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import SmartToast
+import Loaf
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SmartToast("Hello! This is a warning toast because something might have gone bad", icon: UIImage(named: "warning")!, sender: self).show()
+        Loaf("Hello! This is a warning toast because something might have gone bad", icon: UIImage(named: "warning")!, sender: self).show()
     }
 }
 

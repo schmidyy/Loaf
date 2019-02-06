@@ -1,6 +1,6 @@
 //
 //  Manager.swift
-//  SmartToast
+//  Loaf
 //
 //  Created by Mat Schmid on 2019-02-05.
 //  Copyright © 2019 Mat Schmid. All rights reserved.
@@ -9,10 +9,10 @@
 import UIKit
 
 final class Manager: NSObject {
-    private let direction: SmartToast.Direction
+    private let direction: Loaf.Direction
     private let size: CGSize
     
-    init(direction: SmartToast.Direction, size: CGSize) {
+    init(direction: Loaf.Direction, size: CGSize) {
         self.direction = direction
         self.size = size
     }

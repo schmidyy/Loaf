@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274D14EA220B808800A53BA1 /* Loaf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D90739220B7F5100C1D7DD /* Loaf.framework */; };
+		274D14EB220B808800A53BA1 /* Loaf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27D90739220B7F5100C1D7DD /* Loaf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27865A7022090DD600145671 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27865A6F22090DD600145671 /* AppDelegate.swift */; };
 		27865A7222090DD600145671 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27865A7122090DD600145671 /* ViewController.swift */; };
 		27865A7522090DD600145671 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7322090DD600145671 /* Main.storyboard */; };
 		27865A7722090DD700145671 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7622090DD700145671 /* Assets.xcassets */; };
 		27865A7A22090DD700145671 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7822090DD700145671 /* LaunchScreen.storyboard */; };
-		27865A8D22090E9800145671 /* SmartToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27865A8622090E1200145671 /* SmartToast.framework */; };
-		27865A8E22090E9800145671 /* SmartToast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27865A8622090E1200145671 /* SmartToast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		27865A8522090E1200145671 /* PBXContainerItemProxy */ = {
+		274D14EC220B808800A53BA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 27865A8122090E1100145671 /* SmartToast.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 27D9BCFC2208FFCC008064DF;
-			remoteInfo = SmartToast;
-		};
-		27865A8F22090E9800145671 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 27865A8122090E1100145671 /* SmartToast.xcodeproj */;
+			containerPortal = 27865A8122090E1100145671 /* Loaf.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 27D9BCFB2208FFCC008064DF;
-			remoteInfo = SmartToast;
+			remoteInfo = Loaf;
+		};
+		27D90738220B7F5100C1D7DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27865A8122090E1100145671 /* Loaf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27D9BCFC2208FFCC008064DF;
+			remoteInfo = Loaf;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -40,7 +40,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				27865A8E22090E9800145671 /* SmartToast.framework in Embed Frameworks */,
+				274D14EB220B808800A53BA1 /* Loaf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,14 +48,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		27865A6C22090DD600145671 /* SmartToastExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartToastExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27865A6C22090DD600145671 /* LoafExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoafExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27865A6F22090DD600145671 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27865A7122090DD600145671 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		27865A7422090DD600145671 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27865A7622090DD700145671 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27865A7922090DD700145671 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27865A7B22090DD700145671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27865A8122090E1100145671 /* SmartToast.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SmartToast.xcodeproj; path = ../SmartToast/SmartToast.xcodeproj; sourceTree = "<group>"; };
+		27865A8122090E1100145671 /* Loaf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Loaf.xcodeproj; path = ../Loaf/Loaf.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27865A8D22090E9800145671 /* SmartToast.framework in Frameworks */,
+				274D14EA220B808800A53BA1 /* Loaf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,8 +73,8 @@
 		27865A6322090DD600145671 = {
 			isa = PBXGroup;
 			children = (
-				27865A8122090E1100145671 /* SmartToast.xcodeproj */,
-				27865A6E22090DD600145671 /* SmartToastExamples */,
+				27865A8122090E1100145671 /* Loaf.xcodeproj */,
+				27865A6E22090DD600145671 /* LoafExamples */,
 				27865A6D22090DD600145671 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,12 +82,12 @@
 		27865A6D22090DD600145671 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27865A6C22090DD600145671 /* SmartToastExamples.app */,
+				27865A6C22090DD600145671 /* LoafExamples.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		27865A6E22090DD600145671 /* SmartToastExamples */ = {
+		27865A6E22090DD600145671 /* LoafExamples */ = {
 			isa = PBXGroup;
 			children = (
 				27865A6F22090DD600145671 /* AppDelegate.swift */,
@@ -97,13 +97,13 @@
 				27865A7822090DD700145671 /* LaunchScreen.storyboard */,
 				27865A7B22090DD700145671 /* Info.plist */,
 			);
-			path = SmartToastExamples;
+			path = LoafExamples;
 			sourceTree = "<group>";
 		};
-		27865A8222090E1100145671 /* Products */ = {
+		27D90735220B7F5100C1D7DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27865A8622090E1200145671 /* SmartToast.framework */,
+				27D90739220B7F5100C1D7DD /* Loaf.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,9 +111,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		27865A6B22090DD600145671 /* SmartToastExamples */ = {
+		27865A6B22090DD600145671 /* LoafExamples */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27865A7E22090DD700145671 /* Build configuration list for PBXNativeTarget "SmartToastExamples" */;
+			buildConfigurationList = 27865A7E22090DD700145671 /* Build configuration list for PBXNativeTarget "LoafExamples" */;
 			buildPhases = (
 				27865A6822090DD600145671 /* Sources */,
 				27865A6922090DD600145671 /* Frameworks */,
@@ -123,11 +123,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				27865A9022090E9800145671 /* PBXTargetDependency */,
+				274D14ED220B808800A53BA1 /* PBXTargetDependency */,
 			);
-			name = SmartToastExamples;
+			name = LoafExamples;
 			productName = SmartToastExamples;
-			productReference = 27865A6C22090DD600145671 /* SmartToastExamples.app */;
+			productReference = 27865A6C22090DD600145671 /* LoafExamples.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -145,7 +145,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 27865A6722090DD600145671 /* Build configuration list for PBXProject "SmartToastExamples" */;
+			buildConfigurationList = 27865A6722090DD600145671 /* Build configuration list for PBXProject "LoafExamples" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -158,23 +158,23 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 27865A8222090E1100145671 /* Products */;
-					ProjectRef = 27865A8122090E1100145671 /* SmartToast.xcodeproj */;
+					ProductGroup = 27D90735220B7F5100C1D7DD /* Products */;
+					ProjectRef = 27865A8122090E1100145671 /* Loaf.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				27865A6B22090DD600145671 /* SmartToastExamples */,
+				27865A6B22090DD600145671 /* LoafExamples */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		27865A8622090E1200145671 /* SmartToast.framework */ = {
+		27D90739220B7F5100C1D7DD /* Loaf.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = SmartToast.framework;
-			remoteRef = 27865A8522090E1200145671 /* PBXContainerItemProxy */;
+			path = Loaf.framework;
+			remoteRef = 27D90738220B7F5100C1D7DD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -205,10 +205,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		27865A9022090E9800145671 /* PBXTargetDependency */ = {
+		274D14ED220B808800A53BA1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SmartToast;
-			targetProxy = 27865A8F22090E9800145671 /* PBXContainerItemProxy */;
+			name = Loaf;
+			targetProxy = 274D14EC220B808800A53BA1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -355,12 +355,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJH7Z37W69;
-				INFOPLIST_FILE = SmartToastExamples/Info.plist;
+				INFOPLIST_FILE = LoafExamples/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.SmartToastExamples;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.LoafExamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,12 +374,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJH7Z37W69;
-				INFOPLIST_FILE = SmartToastExamples/Info.plist;
+				INFOPLIST_FILE = LoafExamples/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.SmartToastExamples;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.LoafExamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -389,7 +389,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		27865A6722090DD600145671 /* Build configuration list for PBXProject "SmartToastExamples" */ = {
+		27865A6722090DD600145671 /* Build configuration list for PBXProject "LoafExamples" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27865A7C22090DD700145671 /* Debug */,
@@ -398,7 +398,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27865A7E22090DD700145671 /* Build configuration list for PBXNativeTarget "SmartToastExamples" */ = {
+		27865A7E22090DD700145671 /* Build configuration list for PBXNativeTarget "LoafExamples" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27865A7F22090DD700145671 /* Debug */,
