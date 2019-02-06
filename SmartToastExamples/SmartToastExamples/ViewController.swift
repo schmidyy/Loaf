@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SmartToast("Hello", sender: self).show()
+        SmartToast("Hello! This is a warning toast because something might have gone bad", icon: UIImage(named: "warning")!, sender: self).show()
     }
 }
 
