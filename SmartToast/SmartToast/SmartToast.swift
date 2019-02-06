@@ -20,8 +20,8 @@ final public class SmartToast {
         let backgroundColor: UIColor
         let textColor: UIColor
         let font: UIFont
-        let icon: UIImage
-        let iconAlignment: IconAlignment
+        let icon: UIImage?
+        let iconAlignment: IconAlignment? = .left
     }
     
     public enum State {
@@ -44,12 +44,24 @@ final public class SmartToast {
         case fade
     }
     
-    public enum Duration: TimeInterval {
-        public typealias RawValue = TimeInterval
+    public enum Duration {
+        case short
+        case average
+        case long
+        case custom(_ duration: TimeInterval)
         
-        case short = 2.0
-        case average = 4.0
-        case long = 8.0
+        var length: TimeInterval {
+            switch self {
+            case .short:
+                return 2.0
+            case .average:
+                return 4.0
+            case .long:
+                return 8.0
+            case .custom(let timeInterval):
+                return timeInterval
+            }
+        }
     }
     
     // MARK: - Properties
@@ -80,7 +92,13 @@ final public class SmartToast {
 }
 
 final class SmartToastViewController: UIViewController {
-    let toast: SmartToast
+    var toast: SmartToast
+    
+    let label = UILabel()
+    let imageView = UIImageView(image: nil)
+    var completionHandler: (() -> Void)?
+    
+    private var contentView = UIView()
     
     init(_ toast: SmartToast) {
         self.toast = toast
@@ -89,5 +107,27 @@ final class SmartToastViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        
+        label.text = toast.message
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textColor = .white
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        imageView.tintColor = .white
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(label)
+        view.addSubview(imageView)
+        label.constrainToFill(view)
     }
 }
