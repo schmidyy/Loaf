@@ -24,7 +24,7 @@ final class Controller: UIPresentationController {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
     }
     
-    //MARK: - Trnasitions
+    //MARK: - Transitions
     override func containerViewWillLayoutSubviews() {
         presentedView?.frame = frameOfPresentedViewInContainerView
     }

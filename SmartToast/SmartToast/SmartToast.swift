@@ -147,8 +147,19 @@ final class SmartToastViewController: UIViewController {
             label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
+        completionHandler = {
+            print("Completed!")
+        }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + toast.duration.length, execute: {
             self.dismiss(animated: true, completion: self.completionHandler)
         })
+    }
+    
+    @objc private func handleTap() {
+        dismiss(animated: true, completion: completionHandler)
     }
 }
