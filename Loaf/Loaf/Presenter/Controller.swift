@@ -9,16 +9,16 @@
 import UIKit
 
 final class Controller: UIPresentationController {
-    private let direction: Loaf.Direction
+    private let loaf: Loaf
     private let size: CGSize
     
     init(
         presentedViewController: UIViewController,
         presenting presentingViewController: UIViewController?,
-        direction: Loaf.Direction,
+        loaf: Loaf,
         size: CGSize) {
         
-        self.direction = direction
+        self.loaf = loaf
         self.size = size
         
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
@@ -41,7 +41,8 @@ final class Controller: UIPresentationController {
         let toastSize = CGRect(x: containerView.center.x - (containerSize.width / 2),
                                y: containerView.bounds.height - containerSize.height - 30,
                                width: containerSize.width,
-                               height: containerSize.height)
+                               height: containerSize.height
+        )
         
         return toastSize
     }

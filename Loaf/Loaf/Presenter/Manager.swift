@@ -9,11 +9,11 @@
 import UIKit
 
 final class Manager: NSObject {
-    private let direction: Loaf.Direction
+    private let loaf: Loaf
     private let size: CGSize
     
-    init(direction: Loaf.Direction, size: CGSize) {
-        self.direction = direction
+    init(loaf: Loaf, size: CGSize) {
+        self.loaf = loaf
         self.size = size
     }
 }
@@ -23,16 +23,16 @@ extension Manager: UIViewControllerTransitioningDelegate {
         return Controller(
             presentedViewController: presented,
             presenting: presenting,
-            direction: direction,
+            loaf: loaf,
             size: size
         )
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return Animator(presenting: true, duration: 0.5, direction: direction)
+        return Animator(presenting: true, duration: 0.5, direction: loaf.presentingDirection)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return Animator(presenting: false, duration: 0.5, direction: direction)
+        return Animator(presenting: false, duration: 0.5, direction: loaf.dismissingDirection)
     }
 }

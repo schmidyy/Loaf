@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		274D14EA220B808800A53BA1 /* Loaf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D90739220B7F5100C1D7DD /* Loaf.framework */; };
 		274D14EB220B808800A53BA1 /* Loaf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27D90739220B7F5100C1D7DD /* Loaf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		276D5DD0220BB67200877D18 /* ExamplesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276D5DCF220BB67200877D18 /* ExamplesTableViewController.swift */; };
 		27865A7022090DD600145671 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27865A6F22090DD600145671 /* AppDelegate.swift */; };
-		27865A7222090DD600145671 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27865A7122090DD600145671 /* ViewController.swift */; };
 		27865A7522090DD600145671 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7322090DD600145671 /* Main.storyboard */; };
 		27865A7722090DD700145671 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7622090DD700145671 /* Assets.xcassets */; };
 		27865A7A22090DD700145671 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7822090DD700145671 /* LaunchScreen.storyboard */; };
@@ -48,9 +48,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		276D5DCF220BB67200877D18 /* ExamplesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesTableViewController.swift; sourceTree = "<group>"; };
 		27865A6C22090DD600145671 /* LoafExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoafExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27865A6F22090DD600145671 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		27865A7122090DD600145671 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		27865A7422090DD600145671 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27865A7622090DD700145671 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27865A7922090DD700145671 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,6 +70,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		276D5DD1220BB67E00877D18 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				27865A6F22090DD600145671 /* AppDelegate.swift */,
+				27865A7622090DD700145671 /* Assets.xcassets */,
+				27865A7822090DD700145671 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		27865A6322090DD600145671 = {
 			isa = PBXGroup;
 			children = (
@@ -90,11 +100,9 @@
 		27865A6E22090DD600145671 /* LoafExamples */ = {
 			isa = PBXGroup;
 			children = (
-				27865A6F22090DD600145671 /* AppDelegate.swift */,
-				27865A7122090DD600145671 /* ViewController.swift */,
+				276D5DCF220BB67200877D18 /* ExamplesTableViewController.swift */,
 				27865A7322090DD600145671 /* Main.storyboard */,
-				27865A7622090DD700145671 /* Assets.xcassets */,
-				27865A7822090DD700145671 /* LaunchScreen.storyboard */,
+				276D5DD1220BB67E00877D18 /* Supporting Files */,
 				27865A7B22090DD700145671 /* Info.plist */,
 			);
 			path = LoafExamples;
@@ -197,7 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27865A7222090DD600145671 /* ViewController.swift in Sources */,
+				276D5DD0220BB67200877D18 /* ExamplesTableViewController.swift in Sources */,
 				27865A7022090DD600145671 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

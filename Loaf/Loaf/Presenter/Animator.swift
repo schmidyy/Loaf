@@ -39,6 +39,12 @@ extension Animator: UIViewControllerAnimatedTransitioning {
         var dismissedFrame = presentedFrame
         
         switch direction {
+        case .vertical:
+            dismissedFrame.origin.y = transitionContext.containerView.frame.height
+        case .left:
+            dismissedFrame.origin.x = 0
+        case .right:
+            dismissedFrame.origin.x = transitionContext.containerView.frame.width
         default:
             // TODO: Handle all cases
             dismissedFrame.origin.y = transitionContext.containerView.frame.height
@@ -57,6 +63,5 @@ extension Animator: UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(finished)
         })
     }
-    
     
 }

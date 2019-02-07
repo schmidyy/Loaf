@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2713A99B2209236700B149C5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2713A99A2209236700B149C5 /* UIViewController+Extension.swift */; };
+		2713A99B2209236700B149C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2713A99A2209236700B149C5 /* Extensions.swift */; };
 		277E5A46220A27A90054B81E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A45220A27A90054B81E /* Manager.swift */; };
 		277E5A48220A28580054B81E /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A47220A28580054B81E /* Controller.swift */; };
 		277E5A4A220A2A840054B81E /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A49220A2A840054B81E /* Animator.swift */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2713A99A2209236700B149C5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		2713A99A2209236700B149C5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		277E5A45220A27A90054B81E /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		277E5A47220A28580054B81E /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		277E5A49220A2A840054B81E /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				27D9BD0722090D1E008064DF /* Loaf.swift */,
-				2713A99A2209236700B149C5 /* UIViewController+Extension.swift */,
+				2713A99A2209236700B149C5 /* Extensions.swift */,
 				2713A99922091B9200B149C5 /* Presenter */,
 				27D9BCFF2208FFCC008064DF /* Loaf.h */,
 				27D9BD002208FFCC008064DF /* Info.plist */,
@@ -159,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				277E5A4A220A2A840054B81E /* Animator.swift in Sources */,
-				2713A99B2209236700B149C5 /* UIViewController+Extension.swift in Sources */,
+				2713A99B2209236700B149C5 /* Extensions.swift in Sources */,
 				277E5A46220A27A90054B81E /* Manager.swift in Sources */,
 				27D9BD0822090D1E008064DF /* Loaf.swift in Sources */,
 				277E5A48220A28580054B81E /* Controller.swift in Sources */,
