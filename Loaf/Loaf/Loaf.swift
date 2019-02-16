@@ -99,7 +99,7 @@ final class LoafViewController: UIViewController {
     let imageView = UIImageView(image: nil)
     let font = UIFont.systemFont(ofSize: 14, weight: .medium)
     
-    private var contentView = UIView()
+    private var contentView = TapableView()
     
     init(_ toast: Loaf) {
         self.loaf = toast
@@ -128,8 +128,10 @@ final class LoafViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(label)
-        view.addSubview(imageView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(label)
+        contentView.addSubview(imageView)
+        view.addSubview(contentView)
         
         let bundle = Bundle(for: type(of: self))
         switch loaf.state {
@@ -150,19 +152,27 @@ final class LoafViewController: UIViewController {
         }
         
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: view.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 28),
             imageView.widthAnchor.constraint(equalToConstant: 28),
             
             label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4),
-            label.topAnchor.constraint(equalTo: view.topAnchor),
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
+            label.topAnchor.constraint(equalTo: contentView.topAnchor),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tapGesture)
+        contentView.isUserInteractionEnabled = true
+        contentView.addGestureRecognizer(tapGesture)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + loaf.duration.length, execute: {
             self.dismiss(animated: true, completion: self.loaf.completionHandler)
@@ -171,5 +181,27 @@ final class LoafViewController: UIViewController {
     
     @objc private func handleTap() {
         dismiss(animated: true, completion: loaf.completionHandler)
+    }
+}
+
+class TapableView: UIView {
+    
+    init() {
+        super.init(frame: .zero)
+
+        backgroundColor = .purple
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        isUserInteractionEnabled = true
+        addGestureRecognizer(tapGesture)
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func handleTap() {
+        print("~~~~~~~~~~~THIS NEVER GETS HIT~~~~~~~~~~~~~")
     }
 }

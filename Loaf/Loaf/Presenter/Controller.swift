@@ -25,6 +25,11 @@ final class Controller: UIPresentationController {
     }
     
     //MARK: - Transitions
+    override func presentationTransitionWillBegin() {
+        guard let containerView = containerView else { return }
+        containerView.isUserInteractionEnabled = false
+    }
+    
     override func containerViewWillLayoutSubviews() {
         presentedView?.frame = frameOfPresentedViewInContainerView
     }
