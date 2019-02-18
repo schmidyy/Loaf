@@ -99,8 +99,6 @@ final class LoafViewController: UIViewController {
     let imageView = UIImageView(image: nil)
     let font = UIFont.systemFont(ofSize: 14, weight: .medium)
     
-    private var contentView = TapableView()
-    
     init(_ toast: Loaf) {
         self.loaf = toast
         super.init(nibName: nil, bundle: nil)
@@ -128,51 +126,41 @@ final class LoafViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(label)
-        contentView.addSubview(imageView)
-        view.addSubview(contentView)
+        view.addSubview(label)
+        view.addSubview(imageView)
         
-        let bundle = Bundle(for: type(of: self))
+        
         switch loaf.state {
         case .success:
-            imageView.image = UIImage(named: "success", in: bundle, compatibleWith: nil)
+            imageView.image = image(named: "success")
             view.backgroundColor = UIColor(hexString: "#2ecc71")
         case .warning:
-            imageView.image = UIImage(named: "warning", in: bundle, compatibleWith: nil)
+            imageView.image = image(named: "warning")
             view.backgroundColor = UIColor(hexString: "##f1c40f")
         case .error:
-            imageView.image = UIImage(named: "error", in: bundle, compatibleWith: nil)
+            imageView.image = image(named: "error")
             view.backgroundColor = UIColor(hexString: "##e74c3c")
         case .info:
-            imageView.image = UIImage(named: "info", in: bundle, compatibleWith: nil)
+            imageView.image = image(named: "info")
             view.backgroundColor = UIColor(hexString: "##34495e")
         default:
             break
         }
         
         NSLayoutConstraint.activate([
-            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: view.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
-        
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 28),
             imageView.widthAnchor.constraint(equalToConstant: 28),
             
             label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
-            label.topAnchor.constraint(equalTo: contentView.topAnchor),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4),
+            label.topAnchor.constraint(equalTo: view.topAnchor),
+            label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        contentView.isUserInteractionEnabled = true
-        contentView.addGestureRecognizer(tapGesture)
+        view.addGestureRecognizer(tapGesture)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + loaf.duration.length, execute: {
             self.dismiss(animated: true, completion: self.loaf.completionHandler)
@@ -182,26 +170,9 @@ final class LoafViewController: UIViewController {
     @objc private func handleTap() {
         dismiss(animated: true, completion: loaf.completionHandler)
     }
-}
-
-class TapableView: UIView {
     
-    init() {
-        super.init(frame: .zero)
-
-        backgroundColor = .purple
-
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        isUserInteractionEnabled = true
-        addGestureRecognizer(tapGesture)
-
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    @objc private func handleTap() {
-        print("~~~~~~~~~~~THIS NEVER GETS HIT~~~~~~~~~~~~~")
+    private func image(named name: String) -> UIImage? {
+        let bundle = Bundle(for: type(of: self))
+        return UIImage(named: name, in: bundle, compatibleWith: nil)
     }
 }

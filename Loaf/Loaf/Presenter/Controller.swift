@@ -25,13 +25,19 @@ final class Controller: UIPresentationController {
     }
     
     //MARK: - Transitions
-    override func presentationTransitionWillBegin() {
-        guard let containerView = containerView else { return }
-        containerView.isUserInteractionEnabled = false
-    }
     
     override func containerViewWillLayoutSubviews() {
         presentedView?.frame = frameOfPresentedViewInContainerView
+    }
+    
+    override func presentationTransitionWillBegin() {
+        guard let containerView = containerView else { return }
+        
+        containerView.frame.origin = CGPoint(
+            x: (containerView.frame.width - frameOfPresentedViewInContainerView.width) / 4,
+            y: containerView.frame.height - size.height - 40
+        )
+        containerView.frame.size = size
     }
     
     override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
@@ -44,7 +50,7 @@ final class Controller: UIPresentationController {
                                  withParentContainerSize: containerView.bounds.size)
         
         let toastSize = CGRect(x: containerView.center.x - (containerSize.width / 2),
-                               y: containerView.bounds.height - containerSize.height - 30,
+                               y: containerView.bounds.height - containerSize.height,
                                width: containerSize.width,
                                height: containerSize.height
         )

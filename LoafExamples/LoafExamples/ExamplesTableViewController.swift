@@ -53,7 +53,7 @@ class ExamplesTableViewController: UITableViewController {
         case .info:
             Loaf("This is a bit of info", state: .info, sender: self).show()
         case .longMessage:
-            Loaf("This is a toast with a long message. It should span multiple lines and still look good.", state: .info, sender: self).show()
+            Loaf("This is a toast with a long message. It should span multiple lines and still look good. I'm making this span many multiple lines in the hopes of seeing if it will break", state: .info, sender: self).show()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
