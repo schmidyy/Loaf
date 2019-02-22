@@ -21,7 +21,15 @@ final public class Loaf {
         let textColor: UIColor
         let font: UIFont
         let icon: UIImage?
-        let iconAlignment: IconAlignment? = .left
+        let iconAlignment: IconAlignment
+        
+        public init(backgroundColor: UIColor, textColor: UIColor, font: UIFont, icon: UIImage?, iconAlignment: IconAlignment = .left) {
+            self.backgroundColor = backgroundColor
+            self.textColor = textColor
+            self.font = font
+            self.icon = icon
+            self.iconAlignment = iconAlignment
+        }
     }
     
     public enum State {
@@ -29,7 +37,7 @@ final public class Loaf {
         case error
         case warning
         case info
-        case custom(style: Style)
+        case custom(_ style: Style)
     }
     
     public enum Location {
@@ -102,13 +110,17 @@ final class LoafViewController: UIViewController {
     
     let label = UILabel()
     let imageView = UIImageView(image: nil)
-    let font = UIFont.systemFont(ofSize: 14, weight: .medium)
+    var font = UIFont.systemFont(ofSize: 14, weight: .medium)
     var transDelegate: UIViewControllerTransitioningDelegate
     
     init(_ toast: Loaf) {
         self.loaf = toast
         self.transDelegate = Manager(loaf: toast, size: .zero)
         super.init(nibName: nil, bundle: nil)
+        
+        if case let Loaf.State.custom(style) = loaf.state {
+            self.font = style.font
+        }
         
         let height = max(toast.message.heightWithConstrainedWidth(width: 240, font: font) + 12, 40)
         preferredContentSize = CGSize(width: 280, height: height)
@@ -136,35 +148,61 @@ final class LoafViewController: UIViewController {
         view.addSubview(label)
         view.addSubview(imageView)
         
+        func constrainWithIconAlignment(_ alignment: Loaf.Style.IconAlignment) {
+            //TODO: Support no image
+            switch alignment {
+            case .left:
+                NSLayoutConstraint.activate([
+                    imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                    imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                    imageView.heightAnchor.constraint(equalToConstant: 28),
+                    imageView.widthAnchor.constraint(equalToConstant: 28),
+                    
+                    label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+                    label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4),
+                    label.topAnchor.constraint(equalTo: view.topAnchor),
+                    label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                ])
+            case .right:
+                NSLayoutConstraint.activate([
+                    imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                    imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                    imageView.heightAnchor.constraint(equalToConstant: 28),
+                    imageView.widthAnchor.constraint(equalToConstant: 28),
+                    
+                    label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                    label.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -4),
+                    label.topAnchor.constraint(equalTo: view.topAnchor),
+                    label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                ])
+            }
+        }
         
         switch loaf.state {
         case .success:
             imageView.image = image(named: "success")
             view.backgroundColor = UIColor(hexString: "#2ecc71")
+            constrainWithIconAlignment(.left)
         case .warning:
             imageView.image = image(named: "warning")
             view.backgroundColor = UIColor(hexString: "##f1c40f")
+            constrainWithIconAlignment(.left)
         case .error:
             imageView.image = image(named: "error")
             view.backgroundColor = UIColor(hexString: "##e74c3c")
+            constrainWithIconAlignment(.left)
         case .info:
             imageView.image = image(named: "info")
             view.backgroundColor = UIColor(hexString: "##34495e")
-        default:
-            break
+            constrainWithIconAlignment(.left)
+        case .custom(style: let style):
+            imageView.image = style.icon ?? image(named: "info")
+            view.backgroundColor = style.backgroundColor
+            imageView.tintColor = style.textColor
+            label.textColor = style.textColor
+            label.font = style.font
+            constrainWithIconAlignment(style.iconAlignment)
         }
-        
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 28),
-            imageView.widthAnchor.constraint(equalToConstant: 28),
-            
-            label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4),
-            label.topAnchor.constraint(equalTo: view.topAnchor),
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
@@ -180,6 +218,6 @@ final class LoafViewController: UIViewController {
     
     private func image(named name: String) -> UIImage? {
         let bundle = Bundle(for: type(of: self))
-        return UIImage(named: name, in: bundle, compatibleWith: nil)
+        return UIImage(named: name, in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     }
 }

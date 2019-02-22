@@ -23,6 +23,8 @@ class ExamplesTableViewController: UITableViewController {
         case right       = "Right dismissal"
         case left        = "Left dismissal"
         case completion  = "With completion handler"
+        case custom1     = "Custom 1"
+        case custom2     = "Custom 2"
     }
 
     override func viewDidLoad() {
@@ -74,6 +76,12 @@ class ExamplesTableViewController: UITableViewController {
             Loaf("This will print to the console when dismissed", sender: self) {
                 print("Completed!")
             }.show()
+        case .custom1:
+            let style = Loaf.Style(backgroundColor: .purple, textColor: .yellow, font: .systemFont(ofSize: 18, weight: .bold), icon: nil)
+            Loaf("This is a custom loaf", state: .custom(style), sender: self).show()
+        case .custom2:
+            let style = Loaf.Style(backgroundColor: .purple, textColor: .yellow, font: .systemFont(ofSize: 18, weight: .bold), icon: nil, iconAlignment: .right)
+            Loaf("This is a custom loaf with a longer message to test wrapping", state: .custom(style), sender: self).show()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
