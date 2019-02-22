@@ -9,15 +9,15 @@
 import UIKit
 
 final class Animator: NSObject {
-    private let presenting: Bool
+    var presenting: Bool!
+    private let loaf: Loaf
     private let duration: TimeInterval
-    private let direction: Loaf.Direction
+    private let size: CGSize
     
-    init(presenting: Bool, duration: TimeInterval, direction: Loaf.Direction) {
-        self.presenting = presenting
+    init(duration: TimeInterval, loaf: Loaf, size: CGSize) {
         self.duration = duration
-        self.direction = direction
-        
+        self.loaf = loaf
+        self.size = size
         super.init()
     }
 }
@@ -38,16 +38,16 @@ extension Animator: UIViewControllerAnimatedTransitioning {
         let presentedFrame = transitionContext.finalFrame(for: controller)
         var dismissedFrame = presentedFrame
         
-        switch direction {
+        switch presenting ? loaf.presentingDirection : loaf.dismissingDirection {
         case .vertical:
-            dismissedFrame.origin.y = transitionContext.containerView.frame.height
+            dismissedFrame.origin.y = (loaf.location == .bottom) ? controller.view.frame.height + 60 : -size.height - 60
         case .left:
-            dismissedFrame.origin.x = 0
+            dismissedFrame.origin.x = -size.width - 60
         case .right:
-            dismissedFrame.origin.x = transitionContext.containerView.frame.width
+            dismissedFrame.origin.x = controller.view.frame.width * 2
         default:
             // TODO: Handle all cases
-            dismissedFrame.origin.y = transitionContext.containerView.frame.height
+            dismissedFrame.origin.y = controller.view.frame.height
         }
         
         let initialFrame = presenting ? dismissedFrame : presentedFrame

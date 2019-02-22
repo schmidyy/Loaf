@@ -8,17 +8,17 @@
 
 import UIKit
 
-final class Manager: NSObject {
+final class Manager: NSObject, UIViewControllerTransitioningDelegate {
     private let loaf: Loaf
     private let size: CGSize
+    var animator: Animator
     
     init(loaf: Loaf, size: CGSize) {
         self.loaf = loaf
         self.size = size
+        self.animator = Animator(duration: 0.4, loaf: loaf, size: size)
     }
-}
-
-extension Manager: UIViewControllerTransitioningDelegate {
+    
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return Controller(
             presentedViewController: presented,
@@ -29,10 +29,12 @@ extension Manager: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return Animator(presenting: true, duration: 0.5, direction: loaf.presentingDirection)
+        animator.presenting = true
+        return animator
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return Animator(presenting: false, duration: 0.5, direction: loaf.dismissingDirection)
+        animator.presenting = false
+        return animator
     }
 }

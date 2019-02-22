@@ -10,8 +10,8 @@ import Foundation
 
 extension UIViewController {
     func presentToast(_ smartToastViewController: LoafViewController) {
-        let transitionDelegate = Manager(loaf: smartToastViewController.loaf, size: smartToastViewController.preferredContentSize)
-        smartToastViewController.transitioningDelegate = transitionDelegate
+        smartToastViewController.transDelegate = Manager(loaf: smartToastViewController.loaf, size: smartToastViewController.preferredContentSize)
+        smartToastViewController.transitioningDelegate = smartToastViewController.transDelegate
         smartToastViewController.modalPresentationStyle = .custom
         smartToastViewController.view.clipsToBounds = true
         smartToastViewController.view.layer.cornerRadius = 6

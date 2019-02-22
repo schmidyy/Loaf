@@ -52,12 +52,9 @@ final public class Loaf {
         
         var length: TimeInterval {
             switch self {
-            case .short:
-                return 2.0
-            case .average:
-                return 4.0
-            case .long:
-                return 8.0
+            case .short:   return 2.0
+            case .average: return 4.0
+            case .long:    return 8.0
             case .custom(let timeInterval):
                 return timeInterval
             }
@@ -69,17 +66,25 @@ final public class Loaf {
     var state: State
     var location: Location
     var duration: Duration = .average
-    var presentingDirection: Direction = .vertical
-    var dismissingDirection: Direction = .vertical
+    var presentingDirection: Direction
+    var dismissingDirection: Direction
     var completionHandler: (() -> Void)?
     
     private let sender: UIViewController
     
     // MARK: - Public methods
-    public init(_ message: String, state: State = .info, location: Location = .bottom, sender: UIViewController, completionHandler: (() -> Void)? = nil) {
+    public init(_ message: String,
+                state: State = .info,
+                location: Location = .bottom,
+                presentingDirection: Direction = .vertical,
+                dismissingDirection: Direction = .vertical,
+                sender: UIViewController,
+                completionHandler: (() -> Void)? = nil) {
         self.message = message
         self.state = state
         self.location = location
+        self.presentingDirection = presentingDirection
+        self.dismissingDirection = dismissingDirection
         self.sender = sender
         self.completionHandler = completionHandler
     }
@@ -98,9 +103,11 @@ final class LoafViewController: UIViewController {
     let label = UILabel()
     let imageView = UIImageView(image: nil)
     let font = UIFont.systemFont(ofSize: 14, weight: .medium)
+    var transDelegate: UIViewControllerTransitioningDelegate
     
     init(_ toast: Loaf) {
         self.loaf = toast
+        self.transDelegate = Manager(loaf: toast, size: .zero)
         super.init(nibName: nil, bundle: nil)
         
         let height = max(toast.message.heightWithConstrainedWidth(width: 240, font: font) + 12, 40)
