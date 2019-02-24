@@ -79,8 +79,6 @@ final public class Loaf {
     var completionHandler: (() -> Void)?
     let sender: UIViewController
     
-    private let manager = LoafManager()
-    
     // MARK: - Public methods
     public init(_ message: String,
                 state: State = .info,
@@ -103,11 +101,13 @@ final public class Loaf {
         
 //        let toastVC = LoafViewController(self)
 //        sender.presentToast(toastVC)
-        manager.queueAndPresent(self)
+        LoafManager.shared.queueAndPresent(self)
     }
 }
 
 final private class LoafManager: LoafDelegate {
+    static let shared = LoafManager()
+    
     var queue = Queue<Loaf>()
     var isPresenting = false
     
@@ -214,7 +214,6 @@ final class LoafViewController: UIViewController {
     }
     
     @objc private func handleTap() {
-        dismiss(animated: true, completion: loaf.completionHandler)
         dismiss(animated: true) { [weak self] in
             self?.delegate?.loafDidDismiss()
             self?.loaf.completionHandler?()
