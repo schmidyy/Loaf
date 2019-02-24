@@ -37,7 +37,7 @@ final public class Loaf {
         case error
         case warning
         case info
-        case custom(_ style: Style)
+        case custom(Style)
     }
     
     public enum Location {
@@ -56,7 +56,7 @@ final public class Loaf {
         case short
         case average
         case long
-        case custom(_ duration: TimeInterval)
+        case custom(TimeInterval)
         
         var length: TimeInterval {
             switch self {
@@ -77,8 +77,9 @@ final public class Loaf {
     var presentingDirection: Direction
     var dismissingDirection: Direction
     var completionHandler: (() -> Void)?
+    let sender: UIViewController
     
-    private let sender: UIViewController
+    private let manager = LoafManager()
     
     // MARK: - Public methods
     public init(_ message: String,
@@ -100,9 +101,38 @@ final public class Loaf {
     public func show(_ duration: Duration = .average) {
         self.duration = duration
         
-        let toastVC = LoafViewController(self)
-        sender.presentToast(toastVC)
+//        let toastVC = LoafViewController(self)
+//        sender.presentToast(toastVC)
+        manager.queueAndPresent(self)
     }
+}
+
+final private class LoafManager: LoafDelegate {
+    var queue = Queue<Loaf>()
+    var isPresenting = false
+    
+    func queueAndPresent(_ loaf: Loaf) {
+        queue.enqueue(loaf)
+        presentIfPossible()
+    }
+    
+    func presentIfPossible() {
+        if isPresenting == false, let loaf = queue.dequeue() {
+            isPresenting = true
+            let loafVC = LoafViewController(loaf)
+            loafVC.delegate = self
+            loaf.sender.presentToast(loafVC)
+        }
+    }
+    
+    func loafDidDismiss() {
+        isPresenting = false
+        presentIfPossible()
+    }
+}
+
+protocol LoafDelegate: AnyObject {
+    func loafDidDismiss()
 }
 
 final class LoafViewController: UIViewController {
@@ -112,6 +142,7 @@ final class LoafViewController: UIViewController {
     let imageView = UIImageView(image: nil)
     var font = UIFont.systemFont(ofSize: 14, weight: .medium)
     var transDelegate: UIViewControllerTransitioningDelegate
+    weak var delegate: LoafDelegate?
     
     init(_ toast: Loaf) {
         self.loaf = toast
@@ -145,11 +176,62 @@ final class LoafViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(label)
-        view.addSubview(imageView)
+        switch loaf.state {
+        case .success:
+            imageView.image = image(named: "success")
+            view.backgroundColor = UIColor(hexString: "#2ecc71")
+            constrainWithIconAlignment(.left)
+        case .warning:
+            imageView.image = image(named: "warning")
+            view.backgroundColor = UIColor(hexString: "##f1c40f")
+            constrainWithIconAlignment(.left)
+        case .error:
+            imageView.image = image(named: "error")
+            view.backgroundColor = UIColor(hexString: "##e74c3c")
+            constrainWithIconAlignment(.left)
+        case .info:
+            imageView.image = image(named: "info")
+            view.backgroundColor = UIColor(hexString: "##34495e")
+            constrainWithIconAlignment(.left)
+        case .custom(style: let style):
+            imageView.image = style.icon
+            view.backgroundColor = style.backgroundColor
+            imageView.tintColor = style.textColor
+            label.textColor = style.textColor
+            label.font = style.font
+            constrainWithIconAlignment(style.iconAlignment, showsIcon: style.icon != nil)
+        }
         
-        func constrainWithIconAlignment(_ alignment: Loaf.Style.IconAlignment) {
-            //TODO: Support no image
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + loaf.duration.length, execute: {
+            self.dismiss(animated: true) { [weak self] in
+                self?.delegate?.loafDidDismiss()
+                self?.loaf.completionHandler?()
+            }
+        })
+    }
+    
+    @objc private func handleTap() {
+        dismiss(animated: true, completion: loaf.completionHandler)
+        dismiss(animated: true) { [weak self] in
+            self?.delegate?.loafDidDismiss()
+            self?.loaf.completionHandler?()
+        }
+    }
+    
+    private func image(named name: String) -> UIImage? {
+        let bundle = Bundle(for: type(of: self))
+        return UIImage(named: name, in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    }
+    
+    private func constrainWithIconAlignment(_ alignment: Loaf.Style.IconAlignment, showsIcon: Bool = true) {
+        view.addSubview(label)
+        
+        if showsIcon {
+            view.addSubview(imageView)
+            
             switch alignment {
             case .left:
                 NSLayoutConstraint.activate([
@@ -176,48 +258,41 @@ final class LoafViewController: UIViewController {
                     label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
                 ])
             }
+        } else {
+            NSLayoutConstraint.activate([
+                label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                label.topAnchor.constraint(equalTo: view.topAnchor),
+                label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
         }
-        
-        switch loaf.state {
-        case .success:
-            imageView.image = image(named: "success")
-            view.backgroundColor = UIColor(hexString: "#2ecc71")
-            constrainWithIconAlignment(.left)
-        case .warning:
-            imageView.image = image(named: "warning")
-            view.backgroundColor = UIColor(hexString: "##f1c40f")
-            constrainWithIconAlignment(.left)
-        case .error:
-            imageView.image = image(named: "error")
-            view.backgroundColor = UIColor(hexString: "##e74c3c")
-            constrainWithIconAlignment(.left)
-        case .info:
-            imageView.image = image(named: "info")
-            view.backgroundColor = UIColor(hexString: "##34495e")
-            constrainWithIconAlignment(.left)
-        case .custom(style: let style):
-            imageView.image = style.icon ?? image(named: "info")
-            view.backgroundColor = style.backgroundColor
-            imageView.tintColor = style.textColor
-            label.textColor = style.textColor
-            label.font = style.font
-            constrainWithIconAlignment(style.iconAlignment)
-        }
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tapGesture)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + loaf.duration.length, execute: {
-            self.dismiss(animated: true, completion: self.loaf.completionHandler)
-        })
+    }
+}
+
+struct Queue<T> {
+    fileprivate var array = [T]()
+    
+    var isEmpty: Bool {
+        return array.isEmpty
     }
     
-    @objc private func handleTap() {
-        dismiss(animated: true, completion: loaf.completionHandler)
+    var count: Int {
+        return array.count
     }
     
-    private func image(named name: String) -> UIImage? {
-        let bundle = Bundle(for: type(of: self))
-        return UIImage(named: name, in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+    mutating func enqueue(_ element: T) {
+        array.append(element)
+    }
+    
+    mutating func dequeue() -> T? {
+        if isEmpty {
+            return nil
+        } else {
+            return array.removeFirst()
+        }
+    }
+    
+    var front: T? {
+        return array.first
     }
 }

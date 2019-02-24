@@ -42,7 +42,7 @@ extension Animator: UIViewControllerAnimatedTransitioning {
         case .vertical:
             dismissedFrame.origin.y = (loaf.location == .bottom) ? controller.view.frame.height + 60 : -size.height - 60
         case .left:
-            dismissedFrame.origin.x = -size.width - 60
+            dismissedFrame.origin.x = -controller.view.frame.width * 2
         case .right:
             dismissedFrame.origin.x = controller.view.frame.width * 2
         default:
@@ -54,11 +54,14 @@ extension Animator: UIViewControllerAnimatedTransitioning {
         let finalFrame = presenting ? presentedFrame : dismissedFrame
         let animationOption: UIView.AnimationOptions = presenting ? .curveEaseOut : .curveEaseIn
         
+        controller.view.alpha = presenting ? 0 : 1
+        
         let animationDuration = transitionDuration(using: transitionContext)
         controller.view.frame = initialFrame
         
         UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.65, options: animationOption, animations: {
             controller.view.frame = finalFrame
+            controller.view.alpha = self.presenting ? 1 : 0
         }, completion: { finished in
             transitionContext.completeTransition(finished)
         })
