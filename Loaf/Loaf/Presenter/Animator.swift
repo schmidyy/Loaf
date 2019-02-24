@@ -45,9 +45,6 @@ extension Animator: UIViewControllerAnimatedTransitioning {
             dismissedFrame.origin.x = -controller.view.frame.width * 2
         case .right:
             dismissedFrame.origin.x = controller.view.frame.width * 2
-        default:
-            // TODO: Handle all cases
-            dismissedFrame.origin.y = controller.view.frame.height
         }
         
         let initialFrame = presenting ? dismissedFrame : presentedFrame

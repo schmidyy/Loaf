@@ -63,7 +63,7 @@ class ExamplesTableViewController: UITableViewController {
         case .longMessage:
             Loaf("This is a toast with a long message. It should span multiple lines and still look good. I'm making this span many multiple lines in the hopes of seeing if it will break", state: .info, sender: self).show()
         case .top:
-            Loaf("This should be shown at the top of the view", state: .success, location: .top, sender: self).show()
+            Loaf("This should be shown at the top of the view", state: .success, location: .top, presentingDirection: .left, dismissingDirection: .right, sender: self).show()
         case.short:
             Loaf("This is should be shown for 2 seconds", state: .warning, sender: self).show(.short)
         case.long:

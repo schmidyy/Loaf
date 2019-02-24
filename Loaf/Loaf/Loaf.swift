@@ -11,27 +11,53 @@ import UIKit
 final public class Loaf {
     
     // MARK: - Specifiers
+    
+    /// Define a custom style for the loaf.
     public struct Style {
+        /// Specifies the position of the icon on the loaf. (Default is `.left`)
+        ///
+        /// - left: The icon will be on the left of the text
+        /// - right: The icon will be on the right of the text
         public enum IconAlignment {
             case left
             case right
         }
         
+        /// The background color of the loaf.
         let backgroundColor: UIColor
+        
+        /// The color of the label's text
         let textColor: UIColor
+        
+        /// The color of the icon (Assuming it's rendered as template)
+        let tintColor: UIColor
+        
+        /// The font of the label
         let font: UIFont
+        
+        /// The icon on the loaf
         let icon: UIImage?
+        
+        /// The position of the icon
         let iconAlignment: IconAlignment
         
-        public init(backgroundColor: UIColor, textColor: UIColor, font: UIFont, icon: UIImage?, iconAlignment: IconAlignment = .left) {
+        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont, icon: UIImage?, iconAlignment: IconAlignment = .left) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
+            self.tintColor = tintColor
             self.font = font
             self.icon = icon
             self.iconAlignment = iconAlignment
         }
     }
     
+    /// Defines the loaf's status. (Default is `.success`)
+    ///
+    /// - success: Represents a success message
+    /// - error: Represents an error message
+    /// - warning: Represents a warning message
+    /// - info: Represents an info message
+    /// - custom: Represents a custom loaf with a specified style.
     public enum State {
         case success
         case error
@@ -40,18 +66,32 @@ final public class Loaf {
         case custom(Style)
     }
     
+    /// Defines the loaction to display the loaf. (Default is `.bottom`)
+    ///
+    /// - top: Top of the display
+    /// - bottom: Bottom of the display
     public enum Location {
         case top
         case bottom
     }
     
+    /// Defines either the presenting or dismissing direction of loaf. (Default is `.vertical`)
+    ///
+    /// - left: To / from the left
+    /// - right: To / from the right
+    /// - vertical: To / from the top or bottom (depending on the location of the loaf)
     public enum Direction {
         case left
         case right
         case vertical
-        case fade
     }
     
+    /// Defines the duration of the loaf presentation. (Default is .`avergae`)
+    ///
+    /// - short: 2 seconds
+    /// - average: 4 seconds
+    /// - long: 8 seconds
+    /// - custom: A custom duration (usage: `.custom(5.0)`)
     public enum Duration {
         case short
         case average
@@ -96,38 +136,38 @@ final public class Loaf {
         self.completionHandler = completionHandler
     }
     
+    /// Show the loaf for a specified duration. (Default is `.average`)
+    ///
+    /// - Parameter duration: Length the loaf will be presented
     public func show(_ duration: Duration = .average) {
         self.duration = duration
-        
-//        let toastVC = LoafViewController(self)
-//        sender.presentToast(toastVC)
         LoafManager.shared.queueAndPresent(self)
     }
 }
 
-final private class LoafManager: LoafDelegate {
+final fileprivate class LoafManager: LoafDelegate {
     static let shared = LoafManager()
     
-    var queue = Queue<Loaf>()
-    var isPresenting = false
+    fileprivate var queue = Queue<Loaf>()
+    fileprivate var isPresenting = false
     
-    func queueAndPresent(_ loaf: Loaf) {
+    fileprivate func queueAndPresent(_ loaf: Loaf) {
         queue.enqueue(loaf)
         presentIfPossible()
     }
     
-    func presentIfPossible() {
+    func loafDidDismiss() {
+        isPresenting = false
+        presentIfPossible()
+    }
+    
+    fileprivate func presentIfPossible() {
         if isPresenting == false, let loaf = queue.dequeue() {
             isPresenting = true
             let loafVC = LoafViewController(loaf)
             loafVC.delegate = self
             loaf.sender.presentToast(loafVC)
         }
-    }
-    
-    func loafDidDismiss() {
-        isPresenting = false
-        presentIfPossible()
     }
 }
 
@@ -268,30 +308,18 @@ final class LoafViewController: UIViewController {
     }
 }
 
-struct Queue<T> {
+private struct Queue<T> {
     fileprivate var array = [T]()
-    
-    var isEmpty: Bool {
-        return array.isEmpty
-    }
-    
-    var count: Int {
-        return array.count
-    }
     
     mutating func enqueue(_ element: T) {
         array.append(element)
     }
     
     mutating func dequeue() -> T? {
-        if isEmpty {
+        if array.isEmpty {
             return nil
         } else {
             return array.removeFirst()
         }
-    }
-    
-    var front: T? {
-        return array.first
     }
 }
