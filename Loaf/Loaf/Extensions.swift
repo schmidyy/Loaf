@@ -46,3 +46,14 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }
+
+class BundleImageHelper {
+    static func bundleImage(_ name: String) -> UIImage? {
+        let podBundle = Bundle(for: BundleImageHelper.self)
+        if let url = podBundle.url(forResource: "Icon", withExtension: "bundle") {
+            let bundle = Bundle(url: url)
+            return UIImage(named: name, in: bundle, compatibleWith: nil)
+        }
+        return nil
+    }
+}

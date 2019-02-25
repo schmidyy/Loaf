@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Loaf"
-  s.version      = "0.1.4"
+  s.version      = "0.1.6"
   s.summary      = "A Swifty Framework for Easy iOS Toasts."
 
   # This description is used to generate tags and improve search results.
@@ -102,7 +102,7 @@ Pod::Spec.new do |s|
 
   # s.resource = 'Loaf/**/*.pdf'
   s.resource_bundles = {
-    'Loaf' => ['**/*.xcassets']
+    'Loaf' => ['Loaf/Loaf/Icon.bundle']
   }
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

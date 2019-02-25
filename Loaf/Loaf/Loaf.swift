@@ -88,7 +88,7 @@ final public class Loaf {
     
     /// Icons used in basic loaf styles
     public enum Icons {
-        public static let success = UIImage(named: "success", in: Bundle(for: Loaf.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+        public static let success = BundleImageHelper.bundleImage("success")
         public static let error = UIImage(named: "error", in: Bundle(for: Loaf.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         public static let warning = UIImage(named: "warning", in: Bundle(for: Loaf.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         public static let info = UIImage(named: "info", in: Bundle(for: Loaf.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
@@ -247,7 +247,7 @@ final class LoafViewController: UIViewController {
             imageView.tintColor = style.tintColor
             label.textColor = style.textColor
             label.font = style.font
-            constrainWithIconAlignment(style.iconAlignment, showsIcon: style.icon != nil)
+            constrainWithIconAlignment(style.iconAlignment, showsIcon: imageView.image != nil)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -267,10 +267,6 @@ final class LoafViewController: UIViewController {
             self?.loaf.completionHandler?()
         }
     }
-    
-//    private func image(named name: String) {
-//        let bundle = Bundle(
-//    }
     
     private func constrainWithIconAlignment(_ alignment: Loaf.Style.IconAlignment, showsIcon: Bool = true) {
         view.addSubview(label)
@@ -330,3 +326,4 @@ private struct Queue<T> {
         }
     }
 }
+
