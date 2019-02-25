@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Loaf"
-  s.version      = "0.1.3"
+  s.version      = "0.1.4"
   s.summary      = "A Swifty Framework for Easy iOS Toasts."
 
   # This description is used to generate tags and improve search results.
@@ -53,8 +53,6 @@ Pod::Spec.new do |s|
   #
 
   s.author             = { "Mat Schmid" => "matschmidy@gmail.com" }
-  # Or just: s.author    = "Mat Schmid"
-  # s.authors            = { "Mat Schmid" => "mat.schmid@shopify.com" }
   s.social_media_url   = "http://twitter.com/devschmidy"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,9 +90,6 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = 'Loaf/**/*.{h,swift}'
-  # s.public_header_files = "Loaf/Loaf.h"
-
-  # s.exclude_files = "Classes/Exclude"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -105,11 +100,10 @@ Pod::Spec.new do |s|
   #  non-essential files like tests, examples and documentation.
   #
 
-  # s.resource  = "icon.png"
-  # s.resources = 'Loaf/Assets.xcassets'
-
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
+  # s.resource = 'Loaf/**/*.pdf'
+  s.resource_bundles = {
+    'Loaf' => ['**/*.xcassets']
+  }
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
