@@ -25,14 +25,14 @@ class Examples: UITableViewController {
         case right    = "The loaf will be presented and dismissed from the right"
         case mix      = "The loaf will be presented from the left and dismissed vertically"
         
-        case custom1  = "This will showcase using custom colors and font"
-        case custom2  = "This will showcase using right icon alignment"
-        case custom3  = "This will showcase using no icon"
+//        case custom1  = "This will showcase using custom colors and font"
+//        case custom2  = "This will showcase using right icon alignment"
+//        case custom3  = "This will showcase using no icon"
         
         static let grouped: [[Example]] = [[.success, .error, .warning, .info],
                                            [.bottom, .top],
                                            [.vertical, .left, .right, .mix],
-                                           [.custom1, .custom2, .custom3]]
+                                           /*[.custom1, .custom2, .custom3]*/]
     }
     
     private var isDarkMode = false
@@ -79,7 +79,7 @@ class Examples: UITableViewController {
         case .warning:
             Loaf(example.rawValue, state: .warning, sender: self).show()
         case .info:
-            Loaf(example.rawValue, state: .info, sender: self).show()
+            Loaf("Message goes here", state: .info, sender: self).show()
             
         case .bottom:
             Loaf(example.rawValue, sender: self).show()
@@ -95,12 +95,12 @@ class Examples: UITableViewController {
         case .mix:
             Loaf(example.rawValue, presentingDirection: .left, sender: self).show()
             
-        case .custom1:
-            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, textColor: .yellow, tintColor: .green, font: .systemFont(ofSize: 18, weight: .bold), icon: Loaf.Icon.success)), sender: self).show()
-        case .custom2:
-            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, iconAlignment: .right)), sender: self).show()
-        case .custom3:
-            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .black, icon: nil)), sender: self).show()
+//        case .custom1:
+//            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, textColor: .yellow, tintColor: .green, font: .systemFont(ofSize: 18, weight: .bold), icon: Loaf.Icon.success)), sender: self).show()
+//        case .custom2:
+//            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, iconAlignment: .right)), sender: self).show()
+//        case .custom3:
+//            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .black, icon: nil)), sender: self).show()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

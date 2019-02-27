@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Loaf"
-  s.version      = "0.1.6"
+  s.version      = "0.2.0"
   s.summary      = "A Swifty Framework for Easy iOS Toasts."
 
   # This description is used to generate tags and improve search results.

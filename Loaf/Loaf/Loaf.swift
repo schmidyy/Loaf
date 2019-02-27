@@ -114,7 +114,7 @@ final public class Loaf {
         public static let success = Icons.imageOfSuccess().withRenderingMode(.alwaysTemplate)
         public static let error = Icons.imageOfError().withRenderingMode(.alwaysTemplate)
         public static let warning = Icons.imageOfWarning().withRenderingMode(.alwaysTemplate)
-        public static let info = Icons.imageOfWarning().withRenderingMode(.alwaysTemplate)
+        public static let info = Icons.imageOfInfo().withRenderingMode(.alwaysTemplate)
     }
     
     // MARK: - Properties
