@@ -39,9 +39,13 @@ Bellow, I will discuss how to further customize your Loaf!
 
 **_Loaf_** comes with 4 basic style out of the box.
 
-| Success | Error | Warning | Info |
-| ------- | ----- | ------- | ---- |
-| <img width="525" alt="screen shot 2019-02-27 at 3 45 44 pm" src="https://user-images.githubusercontent.com/22358682/53521918-4f8b7600-3aa7-11e9-934d-866e04189e99.png"> | <img width="525" alt="screen shot 2019-02-27 at 3 45 52 pm" src="https://user-images.githubusercontent.com/22358682/53521932-59ad7480-3aa7-11e9-8ba5-f6adef7002e2.png"> | <img width="525" alt="screen shot 2019-02-27 at 3 45 58 pm" src="https://user-images.githubusercontent.com/22358682/53521946-629e4600-3aa7-11e9-8a1e-542048d05afc.png"> | <img width="525" alt="screen shot 2019-02-27 at 3 53 26 pm" src="https://user-images.githubusercontent.com/22358682/53522180-db050700-3aa7-11e9-8363-b28f1c21b186.png"> |
+| Success | Error |
+| ------- | ----- |
+| <img width="525" alt="screen shot 2019-02-27 at 3 45 44 pm" src="https://user-images.githubusercontent.com/22358682/53521918-4f8b7600-3aa7-11e9-934d-866e04189e99.png"> | <img width="525" alt="screen shot 2019-02-27 at 3 45 52 pm" src="https://user-images.githubusercontent.com/22358682/53521932-59ad7480-3aa7-11e9-8ba5-f6adef7002e2.png"> |
+
+| Warning | Info |
+| ------- | ---- |
+| <img width="525" alt="screen shot 2019-02-27 at 3 45 58 pm" src="https://user-images.githubusercontent.com/22358682/53521946-629e4600-3aa7-11e9-8a1e-542048d05afc.png"> | <img width="525" alt="screen shot 2019-02-27 at 3 53 26 pm" src="https://user-images.githubusercontent.com/22358682/53522180-db050700-3aa7-11e9-8363-b28f1c21b186.png"> |
 
 These styles can be specified in the `style` property.
 For instance, to use `Success` styled Loaf, call it like so:
