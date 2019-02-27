@@ -1,4 +1,4 @@
-# Loaf
+# Loaf 🍞
 Inspired by Android's [Toast](https://developer.android.com/reference/android/widget/Toast), **Loaf** is a Swifty Framework for Easy iOS Toasts 
 
 [![Version](https://img.shields.io/cocoapods/v/Loaf.svg?style=flat)](https://cocoapods.org/pods/Loaf)
@@ -17,10 +17,37 @@ Loaf is on Cocoapods! After [setting up a Cocoapods in your project](https://gui
 ```
 pod 'Loaf'
 ```
-to the file, then run `pod install` from the directory containing the Podfile!
+then run `pod install` from the directory containing the Podfile!
 
 Don't forget to include `import Loaf` in every file you'd like to use Loaf
 
 ----
 
-More instructions to come!
+## Usage
+
+From any view controller, a **_Loaf_** can be presented by calling:
+```swift
+Loaf("Message goes here", sender: self).show()
+```
+Which will result in:
+
+<img width="400" alt="screen shot 2019-02-27 at 3 59 07 pm" src="https://user-images.githubusercontent.com/22358682/53522566-a2b1f880-3aa8-11e9-8451-f555811f85ed.png">
+
+Bellow, I will discuss how to further 
+
+### Basic styles
+
+**_Loaf_** comes with 4 basic style out of the box.
+
+| Success | Error | Warning | Info |
+| ------- | ----- | ------- | ---- |
+| <img width="525" alt="screen shot 2019-02-27 at 3 45 44 pm" src="https://user-images.githubusercontent.com/22358682/53521918-4f8b7600-3aa7-11e9-934d-866e04189e99.png"> | <img width="525" alt="screen shot 2019-02-27 at 3 45 52 pm" src="https://user-images.githubusercontent.com/22358682/53521932-59ad7480-3aa7-11e9-8ba5-f6adef7002e2.png"> | <img width="525" alt="screen shot 2019-02-27 at 3 45 58 pm" src="https://user-images.githubusercontent.com/22358682/53521946-629e4600-3aa7-11e9-8a1e-542048d05afc.png"> | <img width="525" alt="screen shot 2019-02-27 at 3 53 26 pm" src="https://user-images.githubusercontent.com/22358682/53522180-db050700-3aa7-11e9-8363-b28f1c21b186.png"> |
+
+These styles can be specified in the `style` property. i.e. to use a success loaf:
+```swift
+Loaf("This is a success loaf", state: .success, sender: self).show()
+```
+
+----
+
+More documentation to come!
