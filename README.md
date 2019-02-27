@@ -21,8 +21,6 @@ then run `pod install` from the directory containing the Podfile!
 
 Don't forget to include `import Loaf` in every file you'd like to use Loaf
 
-----
-
 ## Usage
 
 From any view controller, a **_Loaf_** can be presented by calling:
@@ -34,6 +32,12 @@ Which will result in:
 <img width="400" alt="screen shot 2019-02-27 at 3 59 07 pm" src="https://user-images.githubusercontent.com/22358682/53522566-a2b1f880-3aa8-11e9-8451-f555811f85ed.png">
 
 Bellow, I will discuss how to further customize your Loaf!
+
+## Playground
+
+I've provided an example project to showcase uses of **_Loaf_**! Simply clone this repo, and open `LoafExamples.xcodeproj`. From here you can see and experiment custom **_Loaf_** styles in `Examples.swift`
+
+## Customization
 
 ### Basic styles
 
@@ -52,6 +56,14 @@ For instance, to use `Success` styled Loaf, call it like so:
 ```swift
 Loaf("This is a success loaf", state: .success, sender: self).show()
 ```
+
+### Custom styles
+
+**_Loaf_** allows you to specify a custom style! This will let you set the colors, font, icon. and icon alignment. Here are some examples of custom **_Loaf_** styles!
+
+| Colors and icon | Right icon alignment | No icon |
+| ---- | ---- | ---- |
+| <img width="517" alt="screen shot 2019-02-27 at 6 09 33 pm" src="https://user-images.githubusercontent.com/22358682/53529532-e3b30880-3aba-11e9-9d07-4a4ffd0acee8.png"> | <img width="517" alt="screen shot 2019-02-27 at 6 13 13 pm" src="https://user-images.githubusercontent.com/22358682/53529721-73f14d80-3abb-11e9-830e-1e007fcca84a.png"> | <img width="517" alt="screen shot 2019-02-27 at 6 13 22 pm" src="https://user-images.githubusercontent.com/22358682/53529730-7bb0f200-3abb-11e9-98aa-5aa705266260.png"> |
 
 ----
 
