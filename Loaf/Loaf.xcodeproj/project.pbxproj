@@ -11,10 +11,9 @@
 		277E5A46220A27A90054B81E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A45220A27A90054B81E /* Manager.swift */; };
 		277E5A48220A28580054B81E /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A47220A28580054B81E /* Controller.swift */; };
 		277E5A4A220A2A840054B81E /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A49220A2A840054B81E /* Animator.swift */; };
-		27B2F74922247DC6005C9287 /* Icon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 27B2F74822247DC6005C9287 /* Icon.bundle */; };
 		27D9BD012208FFCC008064DF /* Loaf.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D9BCFF2208FFCC008064DF /* Loaf.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27D9BD0822090D1E008064DF /* Loaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9BD0722090D1E008064DF /* Loaf.swift */; };
-		27FAE961220B63A9001D4E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27FAE960220B63A9001D4E72 /* Assets.xcassets */; };
+		27DD00252227287600DE9171 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DD00242227287600DE9171 /* Icons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,12 +21,11 @@
 		277E5A45220A27A90054B81E /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		277E5A47220A28580054B81E /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		277E5A49220A2A840054B81E /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
-		27B2F74822247DC6005C9287 /* Icon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Icon.bundle; sourceTree = "<group>"; };
 		27D9BCFC2208FFCC008064DF /* Loaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Loaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D9BCFF2208FFCC008064DF /* Loaf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Loaf.h; sourceTree = "<group>"; };
 		27D9BD002208FFCC008064DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27D9BD0722090D1E008064DF /* Loaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loaf.swift; sourceTree = "<group>"; };
-		27FAE960220B63A9001D4E72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		27DD00242227287600DE9171 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,13 +68,12 @@
 		27D9BCFE2208FFCC008064DF /* Loaf */ = {
 			isa = PBXGroup;
 			children = (
+				27DD00242227287600DE9171 /* Icons.swift */,
 				27D9BD0722090D1E008064DF /* Loaf.swift */,
 				2713A99A2209236700B149C5 /* Extensions.swift */,
 				2713A99922091B9200B149C5 /* Presenter */,
 				27D9BCFF2208FFCC008064DF /* Loaf.h */,
 				27D9BD002208FFCC008064DF /* Info.plist */,
-				27FAE960220B63A9001D4E72 /* Assets.xcassets */,
-				27B2F74822247DC6005C9287 /* Icon.bundle */,
 			);
 			path = Loaf;
 			sourceTree = "<group>";
@@ -150,8 +147,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27B2F74922247DC6005C9287 /* Icon.bundle in Resources */,
-				27FAE961220B63A9001D4E72 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +159,7 @@
 			files = (
 				277E5A4A220A2A840054B81E /* Animator.swift in Sources */,
 				2713A99B2209236700B149C5 /* Extensions.swift in Sources */,
+				27DD00252227287600DE9171 /* Icons.swift in Sources */,
 				277E5A46220A27A90054B81E /* Manager.swift in Sources */,
 				27D9BD0822090D1E008064DF /* Loaf.swift in Sources */,
 				277E5A48220A28580054B81E /* Controller.swift in Sources */,

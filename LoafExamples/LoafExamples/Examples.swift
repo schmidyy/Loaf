@@ -96,7 +96,7 @@ class Examples: UITableViewController {
             Loaf(example.rawValue, presentingDirection: .left, sender: self).show()
             
         case .custom1:
-            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, textColor: .yellow, tintColor: .green, font: .systemFont(ofSize: 18, weight: .bold), icon: Loaf.Icons.success)), sender: self).show()
+            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, textColor: .yellow, tintColor: .green, font: .systemFont(ofSize: 18, weight: .bold), icon: Loaf.Icon.success)), sender: self).show()
         case .custom2:
             Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, iconAlignment: .right)), sender: self).show()
         case .custom3:

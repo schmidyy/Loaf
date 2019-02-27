@@ -41,7 +41,7 @@ final public class Loaf {
         /// The position of the icon
         let iconAlignment: IconAlignment
         
-        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Loaf.Icons.info, iconAlignment: IconAlignment = .left) {
+        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info, iconAlignment: IconAlignment = .left) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
             self.tintColor = tintColor
@@ -86,14 +86,6 @@ final public class Loaf {
         case vertical
     }
     
-    /// Icons used in basic loaf styles
-    public enum Icons {
-        public static let success = BundleImageHelper.bundleImage("success")
-        public static let error = UIImage(named: "error", in: Bundle(for: Loaf.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-        public static let warning = UIImage(named: "warning", in: Bundle(for: Loaf.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-        public static let info = UIImage(named: "info", in: Bundle(for: Loaf.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-    }
-    
     /// Defines the duration of the loaf presentation. (Default is .`avergae`)
     ///
     /// - short: 2 seconds
@@ -115,6 +107,14 @@ final public class Loaf {
                 return timeInterval
             }
         }
+    }
+    
+    /// Icons used in basic states
+    public enum Icon {
+        public static let success = Icons.imageOfSuccess().withRenderingMode(.alwaysTemplate)
+        public static let error = Icons.imageOfError().withRenderingMode(.alwaysTemplate)
+        public static let warning = Icons.imageOfWarning().withRenderingMode(.alwaysTemplate)
+        public static let info = Icons.imageOfWarning().withRenderingMode(.alwaysTemplate)
     }
     
     // MARK: - Properties
@@ -226,19 +226,19 @@ final class LoafViewController: UIViewController {
         
         switch loaf.state {
         case .success:
-            imageView.image = Loaf.Icons.success
+            imageView.image = Loaf.Icon.success
             view.backgroundColor = UIColor(hexString: "#2ecc71")
             constrainWithIconAlignment(.left)
         case .warning:
-            imageView.image = Loaf.Icons.warning
+            imageView.image = Loaf.Icon.warning
             view.backgroundColor = UIColor(hexString: "##f1c40f")
             constrainWithIconAlignment(.left)
         case .error:
-            imageView.image = Loaf.Icons.error
+            imageView.image = Loaf.Icon.error
             view.backgroundColor = UIColor(hexString: "##e74c3c")
             constrainWithIconAlignment(.left)
         case .info:
-            imageView.image = Loaf.Icons.info
+            imageView.image = Loaf.Icon.info
             view.backgroundColor = UIColor(hexString: "##34495e")
             constrainWithIconAlignment(.left)
         case .custom(style: let style):

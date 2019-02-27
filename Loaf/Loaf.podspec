@@ -101,9 +101,9 @@ Pod::Spec.new do |s|
   #
 
   # s.resource = 'Loaf/**/*.pdf'
-  s.resource_bundles = {
-    'Loaf' => ['Loaf/Loaf/Icon.bundle']
-  }
+  # s.resource_bundles = {
+  #   'Loaf' => ['Loaf/Loaf/Assets.xcassets']
+  # }
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
