@@ -1,11 +1,18 @@
-# Loaf 🍞
-Inspired by Android's [Toast](https://developer.android.com/reference/android/widget/Toast), **Loaf** is a Swifty Framework for Easy iOS Toasts 
+<H1 align="center">
+Loaf 🍞
+</H1>
+<H4 align="center">
+Inspired by Android's Toast,</br>
+Loaf is a Swifty Framework for Easy iOS Toasts</br>
+</H4>
 
-[![Version](https://img.shields.io/cocoapods/v/Loaf.svg?style=flat)](https://cocoapods.org/pods/Loaf)
-[![License](https://img.shields.io/cocoapods/l/Loaf.svg?style=flat)](https://github.com/schmidyy/Loaf/blob/master/LICENSE)
-![Xcode 9.0+](https://img.shields.io/badge/Xcode-9.0%2B-blue.svg)
-![iOS 11.0+](https://img.shields.io/badge/iOS-11.0%2B-blue.svg)
-![Swift 4.0+](https://img.shields.io/badge/Swift-4.0%2B-orange.svg)
+<p align="center">
+<a href="https://cocoapods.org/pods/Loaf"><img alt="Version" src="https://img.shields.io/cocoapods/v/Loaf.svg?style=flat"></a> 
+<a href="https://github.com/schmidyy/Loaf/blob/master/LICENSE"><img alt="Liscence" src="https://img.shields.io/cocoapods/l/Loaf.svg?style=flat"></a> 
+<a href="https://developer.apple.com/"><img alt="Platform" src="https://img.shields.io/badge/platform-iOS-green.svg"/></a> 
+<a href="https://developer.apple.com/swift"><img alt="Swift4.2" src="https://img.shields.io/badge/language-Swift4.2-orange.svg"/></a>
+</p>
+
 ____
 
 
@@ -23,7 +30,7 @@ Don't forget to include `import Loaf` in every file you'd like to use Loaf
 
 ## Usage
 
-From any view controller, a **_Loaf_** can be presented by calling:
+From any view controller, a Loaf can be presented by calling:
 ```swift
 Loaf("Message goes here", sender: self).show()
 ```
@@ -35,13 +42,13 @@ Bellow, I will discuss how to further customize your Loaf!
 
 ## Playground
 
-I've provided an example project to showcase uses of **_Loaf_**! Simply clone this repo, and open `LoafExamples.xcodeproj`. From here you can see and experiment custom **_Loaf_** styles in `Examples.swift`
+I've provided an example project to showcase uses of Loaf! Simply clone this repo, and open `LoafExamples.xcodeproj`. From here you can see and experiment custom Loaf styles in `Examples.swift`
 
 ## Customization
 
 ### Basic styles
 
-**_Loaf_** comes with 4 basic style out of the box.
+Loaf comes with 4 basic style out of the box.
 
 | Success | Error |
 | ------- | ----- |
@@ -59,12 +66,57 @@ Loaf("This is a success loaf", state: .success, sender: self).show()
 
 ### Custom styles
 
-**_Loaf_** allows you to specify a custom style! This will let you set the colors, font, icon. and icon alignment. Here are some examples of custom **_Loaf_** styles!
+Loaf allows you to specify a custom style! This will let you set the colors, font, icon. and icon alignment. Here are some examples of custom Loaf styles!
 
 | Colors and icon | Right icon alignment | No icon |
 | ---- | ---- | ---- |
 | <img width="517" alt="screen shot 2019-02-27 at 6 09 33 pm" src="https://user-images.githubusercontent.com/22358682/53529532-e3b30880-3aba-11e9-9d07-4a4ffd0acee8.png"> | <img width="517" alt="screen shot 2019-02-27 at 6 13 13 pm" src="https://user-images.githubusercontent.com/22358682/53529721-73f14d80-3abb-11e9-830e-1e007fcca84a.png"> | <img width="517" alt="screen shot 2019-02-27 at 6 13 22 pm" src="https://user-images.githubusercontent.com/22358682/53529730-7bb0f200-3abb-11e9-98aa-5aa705266260.png"> |
 
-----
+All of these properties are specified as part of custom state, like so:
+```swift
+Loaf("Switched to light mode", state: .custom(.init(backgroundColor: .black, icon: UIImage(named: "moon"))), sender: self).show()
+```
 
-More documentation to come!
+### Presenting and dismissing
+
+Loaf allows you to specify the presenting and dismissing direction. The presenting direction is independant from the dismissal direction. Here are some examples:
+
+| Vertical | Left |
+| ---- | ---- |
+| ![vertical](https://user-images.githubusercontent.com/22358682/53534239-f71a9f80-3acb-11e9-8010-c7915012a187.gif) | ![left](https://user-images.githubusercontent.com/22358682/53534240-f7b33600-3acb-11e9-8b10-b6d2cb3199a2.gif) |
+
+| Right | Mix |
+| ---- | ---- |
+| ![right](https://user-images.githubusercontent.com/22358682/53534241-f7b33600-3acb-11e9-8e55-457c5a2f32d2.gif) | ![mix](https://user-images.githubusercontent.com/22358682/53534242-f7b33600-3acb-11e9-9e74-88653d469746.gif) |
+
+These are specified in the function signature, like so:
+```swift
+Loaf("Loaf message", presentingDirection: .left, dismissingDirection: .vertical, sender: self).show()
+```
+
+### Location
+
+Toasts are typically presented at the bottom of the screen, but Loaf allows you to also present them at the top of the screen. Here is an example of a Loaf being presented at the top of the view:
+
+<img width="400" alt="screen shot 2019-02-27 at 8 30 04 pm" src="https://user-images.githubusercontent.com/22358682/53534861-92147900-3ace-11e9-8668-361ec311698a.png">
+
+This is also specified in the function signature, like so:
+```swift
+Loaf("Loaf message", location: .top, sender: self).show()
+```
+
+### Other
+
+Specify the presentation duration. When presenting a Loaf with `.show()`, a presentation duration can be specified. The default value is 4s, but there are presets for 2s and 8s. This is done by using `.show(.short)` for 2s, or `.show(.long)` for 8s. A custom duration can also be specified with `.show(.custom(x))`, where x represents the duration in seconds.
+
+A completion handler can be specified in the Loaf function signature. This block will be called when the dismissal animation is completed. Here is an example of using a completion handler:
+
+```swift
+Loaf("Loaf message", sender: self, completionHandler: {
+    print("Dismissal complete")
+}).show()
+```
+
+____
+
+Made with ❤️ in 🇨🇦 by [Mat Schmid](https://twitter.com/devschmidy)
