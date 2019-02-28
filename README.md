@@ -15,19 +15,6 @@ Loaf is a Swifty Framework for Easy iOS Toasts</br>
 
 ____
 
-
-## Installation
-
-### Cocoapods
-
-Loaf is on Cocoapods! After [setting up Cocoapods in your project](https://guides.cocoapods.org/), simply add the folowing to your Podfile:
-```
-pod 'Loaf'
-```
-then run `pod install` from the directory containing the Podfile!
-
-Don't forget to include `import Loaf` in every file you'd like to use Loaf
-
 ## Usage
 
 From any view controller, a Loaf can be presented by calling:
@@ -119,4 +106,31 @@ Loaf("Loaf message", sender: self, completionHandler: {
 
 ____
 
-Made with ❤️ in 🇨🇦 by [Mat Schmid](https://twitter.com/devschmidy)
+## Installation
+
+### Cocoapods
+
+Loaf is on Cocoapods! After [setting up Cocoapods in your project](https://guides.cocoapods.org/), simply add the folowing to your Podfile:
+```
+pod 'Loaf'
+```
+then run `pod install` from the directory containing the Podfile!
+
+Don't forget to include `import Loaf` in every file you'd like to use Loaf
+
+### Requirements
+
+- Swift 4.2+
+- iOS 11.0+
+
+### Contributing
+
+Pull requests, feature requests and bug reports are welcome 🚀
+
+____
+
+Thanks to [@kirkbyo](https://github.com/kirkbyo) for helping me through the tough parts of this 💪
+
+<p align="center">
+Made with ❤️ in 🇨🇦 by <a href="https://twitter.com/devschmidy">Mat Schmid</a>
+</p>
