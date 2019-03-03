@@ -169,12 +169,11 @@ final fileprivate class LoafManager: LoafDelegate {
     }
     
     fileprivate func presentIfPossible() {
-        if isPresenting == false, let loaf = queue.dequeue(), let sender = loaf.sender {
-            isPresenting = true
-            let loafVC = LoafViewController(loaf)
-            loafVC.delegate = self
-            sender.presentToast(loafVC)
-        }
+        guard isPresenting == false, let loaf = queue.dequeue(), let sender = loaf.sender else { return }
+        isPresenting = true
+        let loafVC = LoafViewController(loaf)
+        loafVC.delegate = self
+        sender.presentToast(loafVC)
     }
 }
 
