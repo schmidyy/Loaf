@@ -124,8 +124,8 @@ final public class Loaf {
     var duration: Duration = .average
     var presentingDirection: Direction
     var dismissingDirection: Direction
-    var completionHandler: (() -> Void)?
-    let sender: UIViewController
+    var onTap: (() -> Void)? = nil
+    weak var sender: UIViewController?
     
     // MARK: - Public methods
     public init(_ message: String,
@@ -133,22 +133,21 @@ final public class Loaf {
                 location: Location = .bottom,
                 presentingDirection: Direction = .vertical,
                 dismissingDirection: Direction = .vertical,
-                sender: UIViewController,
-                completionHandler: (() -> Void)? = nil) {
+                sender: UIViewController) {
         self.message = message
         self.state = state
         self.location = location
         self.presentingDirection = presentingDirection
         self.dismissingDirection = dismissingDirection
         self.sender = sender
-        self.completionHandler = completionHandler
     }
     
     /// Show the loaf for a specified duration. (Default is `.average`)
     ///
     /// - Parameter duration: Length the loaf will be presented
-    public func show(_ duration: Duration = .average) {
+    public func show(_ duration: Duration = .average, onTap: (() -> Void)? = nil) {
         self.duration = duration
+        self.onTap = onTap
         LoafManager.shared.queueAndPresent(self)
     }
 }
@@ -170,11 +169,11 @@ final fileprivate class LoafManager: LoafDelegate {
     }
     
     fileprivate func presentIfPossible() {
-        if isPresenting == false, let loaf = queue.dequeue() {
+        if isPresenting == false, let loaf = queue.dequeue(), let sender = loaf.sender {
             isPresenting = true
             let loafVC = LoafViewController(loaf)
             loafVC.delegate = self
-            loaf.sender.presentToast(loafVC)
+            sender.presentToast(loafVC)
         }
     }
 }
@@ -256,7 +255,7 @@ final class LoafViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + loaf.duration.length, execute: {
             self.dismiss(animated: true) { [weak self] in
                 self?.delegate?.loafDidDismiss()
-                self?.loaf.completionHandler?()
+                self?.loaf.onTap?()
             }
         })
     }
@@ -264,7 +263,7 @@ final class LoafViewController: UIViewController {
     @objc private func handleTap() {
         dismiss(animated: true) { [weak self] in
             self?.delegate?.loafDidDismiss()
-            self?.loaf.completionHandler?()
+            self?.loaf.onTap?()
         }
     }
     

@@ -82,10 +82,9 @@ class Examples: UITableViewController {
             Loaf(example.rawValue, state: .info, sender: self).show()
             
         case .bottom:
-            Loaf(example.rawValue, sender: self).show()
-            Loaf("Loaf message", sender: self, completionHandler: {
-                print("Dismissal complete")
-            }).show()
+            Loaf(example.rawValue, sender: self).show {
+                print("Dismissed!")
+            }
         case .top:
             Loaf(example.rawValue, location: .top, sender: self).show()
             
