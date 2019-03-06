@@ -229,19 +229,19 @@ final class LoafViewController: UIViewController {
         case .success:
             imageView.image = Loaf.Icon.success
             view.backgroundColor = UIColor(hexString: "#2ecc71")
-            constrainWithIconAlignment(.left)
+            constrainWithIconAlignment(loaf.iconAlignment)
         case .warning:
             imageView.image = Loaf.Icon.warning
             view.backgroundColor = UIColor(hexString: "##f1c40f")
-            constrainWithIconAlignment(.left)
+            constrainWithIconAlignment(loaf.iconAlignment)
         case .error:
             imageView.image = Loaf.Icon.error
             view.backgroundColor = UIColor(hexString: "##e74c3c")
-            constrainWithIconAlignment(.left)
+            constrainWithIconAlignment(loaf.iconAlignment)
         case .info:
             imageView.image = Loaf.Icon.info
             view.backgroundColor = UIColor(hexString: "##34495e")
-            constrainWithIconAlignment(.left)
+            constrainWithIconAlignment(loaf.iconAlignment)
         case .custom(style: let style):
             imageView.image = style.icon
             view.backgroundColor = style.backgroundColor
@@ -269,7 +269,7 @@ final class LoafViewController: UIViewController {
         }
     }
     
-    private func constrainWithIconAlignment(_ alignment: Loaf.Style.IconAlignment, showsIcon: Bool = true) {
+    private func constrainWithIconAlignment(_ alignment: Loaf.IconAlignment, showsIcon: Bool = true) {
         view.addSubview(label)
         
         if showsIcon {
