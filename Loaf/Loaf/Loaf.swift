@@ -120,6 +120,7 @@ final public class Loaf {
     // MARK: - Properties
     var message: String
     var state: State
+    var iconAlignment: IconAlignment
     var location: Location
     var duration: Duration = .average
     var presentingDirection: Direction
@@ -130,12 +131,14 @@ final public class Loaf {
     // MARK: - Public methods
     public init(_ message: String,
                 state: State = .info,
+                iconAlignment: IconAlignment = .left,
                 location: Location = .bottom,
                 presentingDirection: Direction = .vertical,
                 dismissingDirection: Direction = .vertical,
                 sender: UIViewController) {
         self.message = message
         self.state = state
+        self.iconAlignment = iconAlignment
         self.location = location
         self.presentingDirection = presentingDirection
         self.dismissingDirection = dismissingDirection
