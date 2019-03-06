@@ -14,15 +14,6 @@ final public class Loaf {
     
     /// Define a custom style for the loaf.
     public struct Style {
-        /// Specifies the position of the icon on the loaf. (Default is `.left`)
-        ///
-        /// - left: The icon will be on the left of the text
-        /// - right: The icon will be on the right of the text
-        public enum IconAlignment {
-            case left
-            case right
-        }
-        
         /// The background color of the loaf.
         let backgroundColor: UIColor
         
@@ -49,6 +40,15 @@ final public class Loaf {
             self.icon = icon
             self.iconAlignment = iconAlignment
         }
+    }
+    
+    /// Specifies the position of the icon on the loaf. (Default is `.left`)
+    ///
+    /// - left: The icon will be on the left of the text
+    /// - right: The icon will be on the right of the text
+    public enum IconAlignment {
+        case left
+        case right
     }
     
     /// Defines the loaf's status. (Default is `.info`)
