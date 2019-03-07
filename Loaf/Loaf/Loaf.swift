@@ -29,16 +29,12 @@ final public class Loaf {
         /// The icon on the loaf
         let icon: UIImage?
         
-        /// The position of the icon
-        let iconAlignment: IconAlignment
-        
-        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info, iconAlignment: IconAlignment = .left) {
+        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
             self.tintColor = tintColor
             self.font = font
             self.icon = icon
-            self.iconAlignment = iconAlignment
         }
     }
     
@@ -248,7 +244,7 @@ final class LoafViewController: UIViewController {
             imageView.tintColor = style.tintColor
             label.textColor = style.textColor
             label.font = style.font
-            constrainWithIconAlignment(style.iconAlignment, showsIcon: imageView.image != nil)
+            constrainWithIconAlignment(loaf.iconAlignment, showsIcon: imageView.image != nil)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
