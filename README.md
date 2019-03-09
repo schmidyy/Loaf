@@ -11,6 +11,7 @@ Loaf is a Swifty Framework for Easy iOS Toasts</br>
 <a href="https://github.com/schmidyy/Loaf/blob/master/LICENSE"><img alt="Liscence" src="https://img.shields.io/cocoapods/l/Loaf.svg?style=flat"></a> 
 <a href="https://developer.apple.com/"><img alt="Platform" src="https://img.shields.io/badge/platform-iOS-green.svg"/></a> 
 <a href="https://developer.apple.com/swift"><img alt="Swift4.2" src="https://img.shields.io/badge/language-Swift4.2-orange.svg"/></a>
+<a href="http://clayallsopp.github.io/readme-score?url=https://github.com/schmidyy/loaf"><img alt="Readme Score" src="http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/schmidyy/loaf"></a>
 </p>
 
 ____
