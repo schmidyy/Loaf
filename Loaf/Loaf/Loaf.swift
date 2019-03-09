@@ -14,15 +14,6 @@ final public class Loaf {
     
     /// Define a custom style for the loaf.
     public struct Style {
-        /// Specifies the position of the icon on the loaf. (Default is `.left`)
-        ///
-        /// - left: The icon will be on the left of the text
-        /// - right: The icon will be on the right of the text
-        public enum IconAlignment {
-            case left
-            case right
-        }
-        
         /// The background color of the loaf.
         let backgroundColor: UIColor
         
@@ -38,17 +29,22 @@ final public class Loaf {
         /// The icon on the loaf
         let icon: UIImage?
         
-        /// The position of the icon
-        let iconAlignment: IconAlignment
-        
-        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info, iconAlignment: IconAlignment = .left) {
+        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
             self.tintColor = tintColor
             self.font = font
             self.icon = icon
-            self.iconAlignment = iconAlignment
         }
+    }
+    
+    /// Specifies the position of the icon on the loaf. (Default is `.left`)
+    ///
+    /// - left: The icon will be on the left of the text
+    /// - right: The icon will be on the right of the text
+    public enum IconAlignment {
+        case left
+        case right
     }
     
     /// Defines the loaf's status. (Default is `.info`)
@@ -120,6 +116,7 @@ final public class Loaf {
     // MARK: - Properties
     var message: String
     var state: State
+    var iconAlignment: IconAlignment
     var location: Location
     var duration: Duration = .average
     var presentingDirection: Direction
@@ -130,12 +127,14 @@ final public class Loaf {
     // MARK: - Public methods
     public init(_ message: String,
                 state: State = .info,
+                iconAlignment: IconAlignment = .left,
                 location: Location = .bottom,
                 presentingDirection: Direction = .vertical,
                 dismissingDirection: Direction = .vertical,
                 sender: UIViewController) {
         self.message = message
         self.state = state
+        self.iconAlignment = iconAlignment
         self.location = location
         self.presentingDirection = presentingDirection
         self.dismissingDirection = dismissingDirection
@@ -226,26 +225,26 @@ final class LoafViewController: UIViewController {
         case .success:
             imageView.image = Loaf.Icon.success
             view.backgroundColor = UIColor(hexString: "#2ecc71")
-            constrainWithIconAlignment(.left)
+            constrainWithIconAlignment(loaf.iconAlignment)
         case .warning:
             imageView.image = Loaf.Icon.warning
             view.backgroundColor = UIColor(hexString: "##f1c40f")
-            constrainWithIconAlignment(.left)
+            constrainWithIconAlignment(loaf.iconAlignment)
         case .error:
             imageView.image = Loaf.Icon.error
             view.backgroundColor = UIColor(hexString: "##e74c3c")
-            constrainWithIconAlignment(.left)
+            constrainWithIconAlignment(loaf.iconAlignment)
         case .info:
             imageView.image = Loaf.Icon.info
             view.backgroundColor = UIColor(hexString: "##34495e")
-            constrainWithIconAlignment(.left)
+            constrainWithIconAlignment(loaf.iconAlignment)
         case .custom(style: let style):
             imageView.image = style.icon
             view.backgroundColor = style.backgroundColor
             imageView.tintColor = style.tintColor
             label.textColor = style.textColor
             label.font = style.font
-            constrainWithIconAlignment(style.iconAlignment, showsIcon: imageView.image != nil)
+            constrainWithIconAlignment(loaf.iconAlignment, showsIcon: imageView.image != nil)
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -266,7 +265,7 @@ final class LoafViewController: UIViewController {
         }
     }
     
-    private func constrainWithIconAlignment(_ alignment: Loaf.Style.IconAlignment, showsIcon: Bool = true) {
+    private func constrainWithIconAlignment(_ alignment: Loaf.IconAlignment, showsIcon: Bool = true) {
         view.addSubview(label)
         
         if showsIcon {
