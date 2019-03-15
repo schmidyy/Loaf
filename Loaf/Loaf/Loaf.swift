@@ -125,6 +125,7 @@ final public class Loaf {
     var presentingDirection: Direction
     var dismissingDirection: Direction
     var onTap: (() -> Void)? = nil
+    var onDismiss: (() -> Void)? = nil
     weak var sender: UIViewController?
     
     // MARK: - Public methods
@@ -145,9 +146,10 @@ final public class Loaf {
     /// Show the loaf for a specified duration. (Default is `.average`)
     ///
     /// - Parameter duration: Length the loaf will be presented
-    public func show(_ duration: Duration = .average, onTap: (() -> Void)? = nil) {
+    public func show(_ duration: Duration = .average, onTap: (() -> Void)? = nil, onDismiss: (() -> Void)? = nil) {
         self.duration = duration
         self.onTap = onTap
+        self.onDismiss = onDismiss
         LoafManager.shared.queueAndPresent(self)
     }
 }
@@ -254,7 +256,7 @@ final class LoafViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + loaf.duration.length, execute: {
             self.dismiss(animated: true) { [weak self] in
                 self?.delegate?.loafDidDismiss()
-                self?.loaf.onTap?()
+                self?.loaf.onDismiss?()
             }
         })
     }
