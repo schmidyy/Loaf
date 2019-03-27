@@ -82,8 +82,8 @@ class Examples: UITableViewController {
             Loaf(example.rawValue, state: .info, sender: self).show()
             
         case .bottom:
-            Loaf(example.rawValue, sender: self).show {
-                print("Dismissed!")
+            Loaf(example.rawValue, sender: self).show { wasTapped in
+                print(wasTapped ? "Tapped" : "Dismissed")
             }
         case .top:
             Loaf(example.rawValue, location: .top, sender: self).show()
