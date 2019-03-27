@@ -97,13 +97,13 @@ Loaf("Loaf message", location: .top, sender: self).show()
 
 Specify the presentation duration. When presenting a Loaf with `.show()`, a presentation duration can be specified. The default value is 4s, but there are presets for 2s and 8s. This is done by using `.show(.short)` for 2s, or `.show(.long)` for 8s. A custom duration can also be specified with `.show(.custom(x))`, where x represents the duration in seconds.
 
-**⚠️ New in `0.3.0`:**
+**⚠️ New in `0.4.0`:**
 
-A completion handler can be specified in the Loaf `show()` function signature. This block will be called when the dismissal animation is completed. Here is an example of using a completion handler, now named `onTap`:
+A completion handler can be specified in the Loaf `show()` function signature. This block will be called when the dismissal animation is completed, or when the Load is tapped. This completion handler is now passed with a boolean representing whether the Loaf was tapped or not. Here is an example of using a completion handler:
 
 ```swift
-Loaf(example.rawValue, sender: self).show {
-     print("Dismissed!")
+Loaf(example.rawValue, sender: self).show { wasTapped in
+     print(wasTapped ? "Tapped" : "Dismissed after duration elapsed")
 }
 ```
 
