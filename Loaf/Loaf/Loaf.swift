@@ -38,15 +38,18 @@ final public class Loaf {
         /// The icon on the loaf
         let icon: UIImage?
         
+        let textAlignment: NSTextAlignment
+        
         /// The position of the icon
         let iconAlignment: IconAlignment
         
-        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info, iconAlignment: IconAlignment = .left) {
+        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info, textAlignment: NSTextAlignment = .left, iconAlignment: IconAlignment = .left) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
             self.tintColor = tintColor
             self.font = font
             self.icon = icon
+            self.textAlignment = textAlignment
             self.iconAlignment = iconAlignment
         }
     }
@@ -187,6 +190,7 @@ final class LoafViewController: UIViewController {
     let label = UILabel()
     let imageView = UIImageView(image: nil)
     var font = UIFont.systemFont(ofSize: 14, weight: .medium)
+    var textAlignment: NSTextAlignment = .left
     var transDelegate: UIViewControllerTransitioningDelegate
     weak var delegate: LoafDelegate?
     
@@ -197,6 +201,7 @@ final class LoafViewController: UIViewController {
         
         if case let Loaf.State.custom(style) = loaf.state {
             self.font = style.font
+            self.textAlignment = style.textAlignment
         }
         
         let height = max(toast.message.heightWithConstrainedWidth(width: 240, font: font) + 12, 40)
@@ -215,6 +220,7 @@ final class LoafViewController: UIViewController {
         label.lineBreakMode = .byWordWrapping
         label.textColor = .white
         label.font = font
+        label.textAlignment = textAlignment
         label.setContentCompressionResistancePriority(.required, for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
         

@@ -102,7 +102,7 @@ class Examples: UITableViewController {
         case .custom2:
             Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, iconAlignment: .right)), sender: self).show()
         case .custom3:
-            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .black, icon: nil)), sender: self).show()
+            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .black, icon: nil, textAlignment: .center)), sender: self).show()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
