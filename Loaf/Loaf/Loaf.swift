@@ -153,6 +153,18 @@ final public class Loaf {
         self.completionHandler = completionHandler
         LoafManager.shared.queueAndPresent(self)
     }
+    
+    /// Hide a loaf object manually
+    /// helpful if you need to present a view controller from the same view controller that is already
+    /// presenting a toast
+    /// - Parameter animated: should the dismissal be animated
+    public func dismiss(animated: Bool = true){
+        guard LoafManager.shared.isPresenting else { return }
+        guard let vc = sender?.presentedViewController as? LoafViewController else { return }
+        vc.dismiss(animated: animated) {
+            vc.delegate?.loafDidDismiss()
+        }
+    }
 }
 
 final fileprivate class LoafManager: LoafDelegate {
