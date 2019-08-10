@@ -41,6 +41,7 @@ class Examples: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "moon"), style: .done, target: self, action: #selector(toggleDarkMode))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(dismissLoaf))
     }
     
     @objc private func toggleDarkMode() {
@@ -58,6 +59,11 @@ class Examples: UITableViewController {
         tableView.reloadData()
         isDarkMode = !isDarkMode
     }
+	
+	@objc private func dismissLoaf() {
+		// Manually dismisses the currently presented Loaf
+		Loaf.dismiss(sender: self)
+	}
 
     // MARK: - Table view data source
 

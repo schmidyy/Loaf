@@ -160,6 +160,17 @@ final public class Loaf {
         self.completionHandler = completionHandler
         LoafManager.shared.queueAndPresent(self)
     }
+	
+	/// Manually dismiss a currently presented Loaf
+	///
+	/// - Parameter animated: Whether the dismissal will be animated
+	public static func dismiss(sender: UIViewController, animated: Bool = true){
+		guard LoafManager.shared.isPresenting else { return }
+		guard let vc = sender.presentedViewController as? LoafViewController else { return }
+		vc.dismiss(animated: animated) {
+			vc.delegate?.loafDidDismiss()
+		}
+	}
 }
 
 final fileprivate class LoafManager: LoafDelegate {
