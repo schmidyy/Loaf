@@ -82,8 +82,11 @@ class Examples: UITableViewController {
             Loaf(example.rawValue, state: .info, sender: self).show()
             
         case .bottom:
-            Loaf(example.rawValue, sender: self).show { wasTapped in
-                print(wasTapped ? "Tapped" : "Dismissed")
+            Loaf(example.rawValue, sender: self).show { dismissalType in
+                switch dismissalType {
+                case .tapped: print("Tapped!")
+                case .timedOut: print("Timmed out!")
+                }
             }
         case .top:
             Loaf(example.rawValue, location: .top, sender: self).show()

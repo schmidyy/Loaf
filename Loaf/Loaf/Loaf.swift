@@ -120,14 +120,21 @@ final public class Loaf {
         public static let info = Icons.imageOfInfo().withRenderingMode(.alwaysTemplate)
     }
     
+    // Reason a Loaf was dismissed
+    public enum DismissalReason {
+        case tapped
+        case timedOut
+    }
+    
     // MARK: - Properties
+    public typealias LoafCompletionHandler = ((DismissalReason) -> Void)?
     var message: String
     var state: State
     var location: Location
     var duration: Duration = .average
     var presentingDirection: Direction
     var dismissingDirection: Direction
-    var completionHandler: ((Bool) -> Void)? = nil
+    var completionHandler: LoafCompletionHandler = nil
     weak var sender: UIViewController?
     
     // MARK: - Public methods
@@ -148,7 +155,7 @@ final public class Loaf {
     /// Show the loaf for a specified duration. (Default is `.average`)
     ///
     /// - Parameter duration: Length the loaf will be presented
-    public func show(_ duration: Duration = .average, completionHandler: ((Bool) -> Void)? = nil) {
+    public func show(_ duration: Duration = .average, completionHandler: LoafCompletionHandler = nil) {
         self.duration = duration
         self.completionHandler = completionHandler
         LoafManager.shared.queueAndPresent(self)
@@ -260,7 +267,7 @@ final class LoafViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + loaf.duration.length, execute: {
             self.dismiss(animated: true) { [weak self] in
                 self?.delegate?.loafDidDismiss()
-                self?.loaf.completionHandler?(false)
+                self?.loaf.completionHandler?(.timedOut)
             }
         })
     }
@@ -268,7 +275,7 @@ final class LoafViewController: UIViewController {
     @objc private func handleTap() {
         dismiss(animated: true) { [weak self] in
             self?.delegate?.loafDidDismiss()
-            self?.loaf.completionHandler?(true)
+            self?.loaf.completionHandler?(.tapped)
         }
     }
     
