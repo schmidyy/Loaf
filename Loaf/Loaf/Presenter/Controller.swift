@@ -37,8 +37,8 @@ final class Controller: UIPresentationController {
         switch loaf.location {
         case .bottom:
             let bottomMargin:CGFloat = containerView.frame.height - size.height
-            if let tabbar = loaf.sender?.parent as? UITabBarController{
-                yPosition = bottomMargin - 10 - tabbar.tabBar.frame.height
+            if let tabBar = loaf.sender?.parent as? UITabBarController{
+                yPosition = bottomMargin - 10 - tabBar.tabBar.frame.height
             }else{
                 yPosition = bottomMargin - 40
             }

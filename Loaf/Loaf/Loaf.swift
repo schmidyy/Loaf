@@ -22,6 +22,15 @@ final public class Loaf {
             case left
             case right
         }
+		
+        /// Specifies the width of the Loaf. (Default is `.fixed(280)`)
+        ///
+        /// - fixed: Specified as pixel size. i.e. 280
+        /// - screenPercentage: Specified as a ratio to the screen size. This value must be between 0 and 1. i.e. 0.8
+        public enum Width {
+            case fixed(CGFloat)
+            case screenPercentage(CGFloat)
+        }
         
         /// The background color of the loaf.
         let backgroundColor: UIColor
@@ -38,12 +47,16 @@ final public class Loaf {
         /// The icon on the loaf
         let icon: UIImage?
         
+        /// The alignment of the text within the Loaf
         let textAlignment: NSTextAlignment
         
         /// The position of the icon
         let iconAlignment: IconAlignment
-        
-        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info, textAlignment: NSTextAlignment = .left, iconAlignment: IconAlignment = .left) {
+		
+        /// The width of the loaf
+        let width: Width
+		
+        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info, textAlignment: NSTextAlignment = .left, iconAlignment: IconAlignment = .left, width: Width = .fixed(280)) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
             self.tintColor = tintColor
@@ -51,6 +64,7 @@ final public class Loaf {
             self.icon = icon
             self.textAlignment = textAlignment
             self.iconAlignment = iconAlignment
+            self.width = width
         }
     }
     
@@ -216,14 +230,23 @@ final class LoafViewController: UIViewController {
         self.loaf = toast
         self.transDelegate = Manager(loaf: toast, size: .zero)
         super.init(nibName: nil, bundle: nil)
-        
+		
+        var width: CGFloat?
         if case let Loaf.State.custom(style) = loaf.state {
             self.font = style.font
             self.textAlignment = style.textAlignment
+			
+            switch style.width {
+            case .fixed(let value):
+                width = value
+            case .screenPercentage(let percentage):
+                guard 0...1 ~= percentage else { return }
+                width = UIScreen.main.bounds.width * percentage
+            }
         }
         
         let height = max(toast.message.heightWithConstrainedWidth(width: 240, font: font) + 12, 40)
-        preferredContentSize = CGSize(width: 280, height: height)
+        preferredContentSize = CGSize(width: width ?? 280, height: height)
     }
     
     required init?(coder aDecoder: NSCoder) {

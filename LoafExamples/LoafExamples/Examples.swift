@@ -27,8 +27,8 @@ class Examples: UITableViewController {
         
         case custom1  = "This will showcase using custom colors and font"
         case custom2  = "This will showcase using right icon alignment"
-        case custom3  = "This will showcase using no icon"
-        
+        case custom3  = "This will showcase using no icon and 80% screen size width"
+		
         static let grouped: [[Example]] = [[.success, .error, .warning, .info],
                                            [.bottom, .top],
                                            [.vertical, .left, .right, .mix],
@@ -111,7 +111,7 @@ class Examples: UITableViewController {
         case .custom2:
             Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, iconAlignment: .right)), sender: self).show()
         case .custom3:
-            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .black, icon: nil, textAlignment: .center)), sender: self).show()
+            Loaf(example.rawValue, state: .custom(.init(backgroundColor: .black, icon: nil, textAlignment: .center, width: .screenPercentage(0.8))), sender: self).show()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
