@@ -97,14 +97,30 @@ Loaf("Loaf message", location: .top, sender: self).show()
 
 Specify the presentation duration. When presenting a Loaf with `.show()`, a presentation duration can be specified. The default value is 4s, but there are presets for 2s and 8s. This is done by using `.show(.short)` for 2s, or `.show(.long)` for 8s. A custom duration can also be specified with `.show(.custom(x))`, where x represents the duration in seconds.
 
-**⚠️ New in `0.4.0`:**
+**⚠️ New in `0.5.0`:**
 
-A completion handler can be specified in the Loaf `show()` function signature. This block will be called when the dismissal animation is completed, or when the Load is tapped. This completion handler is now passed with a boolean representing whether the Loaf was tapped or not. Here is an example of using a completion handler:
+- A completion handler can be specified in the Loaf `show()` function signature. This block will be called when the dismissal animation is completed, or when the Load is tapped. This completion handler is now passed with a enum representing whether the Loaf was tapped or timmed out. Here is an example of using a completion handler:
 
 ```swift
-Loaf(example.rawValue, sender: self).show { wasTapped in
-     print(wasTapped ? "Tapped" : "Dismissed after duration elapsed")
+Loaf(example.rawValue, sender: self).show { dismissalType in
+     switch dismissalType {
+          case .tapped: print("Tapped!")
+          case .timedOut: print("Timmed out!")
+     }
 }
+```
+
+- A Loaf's width can be specified via the `Style` component. The width can be specifed as a fixed size (i.e. 280px) or as a percentage of the screen's width. (i.e. `0.8` -> 80%). Here is some example usage:
+
+```Swift
+Loaf(example.rawValue, state: .custom(.init(backgroundColor: .black, width: .screenPercentage(0.8))), sender: self).show()
+```
+
+- Loaf's will now be presented above tab bars, when possible.
+- Loaf's can be manually dismissed through a global method: 
+
+```swift
+Loaf.dismiss(sender: self) // Where `self` is the Loaf's presenter
 ```
 
 ____
