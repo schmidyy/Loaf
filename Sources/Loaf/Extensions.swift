@@ -6,7 +6,7 @@
 //  Copyright © 2019 Mat Schmid. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UIViewController {
     func presentToast(_ smartToastViewController: LoafViewController) {

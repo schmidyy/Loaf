@@ -7,25 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2713A99B2209236700B149C5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2713A99A2209236700B149C5 /* Extensions.swift */; };
-		277E5A46220A27A90054B81E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A45220A27A90054B81E /* Manager.swift */; };
-		277E5A48220A28580054B81E /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A47220A28580054B81E /* Controller.swift */; };
-		277E5A4A220A2A840054B81E /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E5A49220A2A840054B81E /* Animator.swift */; };
 		27D9BD012208FFCC008064DF /* Loaf.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D9BCFF2208FFCC008064DF /* Loaf.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27D9BD0822090D1E008064DF /* Loaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9BD0722090D1E008064DF /* Loaf.swift */; };
-		27DD00252227287600DE9171 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DD00242227287600DE9171 /* Icons.swift */; };
+		84DA601D234329880088680A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA6017234329880088680A /* Manager.swift */; };
+		84DA601E234329880088680A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA6018234329880088680A /* Controller.swift */; };
+		84DA601F234329880088680A /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA6019234329880088680A /* Animator.swift */; };
+		84DA6020234329880088680A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA601A234329880088680A /* Extensions.swift */; };
+		84DA6021234329880088680A /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA601B234329880088680A /* Icons.swift */; };
+		84DA6022234329880088680A /* Loaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA601C234329880088680A /* Loaf.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2713A99A2209236700B149C5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		277E5A45220A27A90054B81E /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
-		277E5A47220A28580054B81E /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		277E5A49220A2A840054B81E /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		27D9BCFC2208FFCC008064DF /* Loaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Loaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D9BCFF2208FFCC008064DF /* Loaf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Loaf.h; sourceTree = "<group>"; };
 		27D9BD002208FFCC008064DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27D9BD0722090D1E008064DF /* Loaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loaf.swift; sourceTree = "<group>"; };
-		27DD00242227287600DE9171 /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		84DA6017234329880088680A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		84DA6018234329880088680A /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		84DA6019234329880088680A /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		84DA601A234329880088680A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		84DA601B234329880088680A /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		84DA601C234329880088680A /* Loaf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaf.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,16 +39,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2713A99922091B9200B149C5 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				277E5A45220A27A90054B81E /* Manager.swift */,
-				277E5A47220A28580054B81E /* Controller.swift */,
-				277E5A49220A2A840054B81E /* Animator.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		27D9BCF22208FFCC008064DF = {
 			isa = PBXGroup;
 			children = (
@@ -68,14 +58,41 @@
 		27D9BCFE2208FFCC008064DF /* Loaf */ = {
 			isa = PBXGroup;
 			children = (
-				27DD00242227287600DE9171 /* Icons.swift */,
-				27D9BD0722090D1E008064DF /* Loaf.swift */,
-				2713A99A2209236700B149C5 /* Extensions.swift */,
-				2713A99922091B9200B149C5 /* Presenter */,
+				84DA6014234329880088680A /* Sources */,
 				27D9BCFF2208FFCC008064DF /* Loaf.h */,
 				27D9BD002208FFCC008064DF /* Info.plist */,
 			);
 			path = Loaf;
+			sourceTree = "<group>";
+		};
+		84DA6014234329880088680A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				84DA6015234329880088680A /* Loaf */,
+			);
+			name = Sources;
+			path = ../../Sources;
+			sourceTree = "<group>";
+		};
+		84DA6015234329880088680A /* Loaf */ = {
+			isa = PBXGroup;
+			children = (
+				84DA6016234329880088680A /* Presenter */,
+				84DA601A234329880088680A /* Extensions.swift */,
+				84DA601B234329880088680A /* Icons.swift */,
+				84DA601C234329880088680A /* Loaf.swift */,
+			);
+			path = Loaf;
+			sourceTree = "<group>";
+		};
+		84DA6016234329880088680A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				84DA6017234329880088680A /* Manager.swift */,
+				84DA6018234329880088680A /* Controller.swift */,
+				84DA6019234329880088680A /* Animator.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,7 +138,7 @@
 				TargetAttributes = {
 					27D9BCFB2208FFCC008064DF = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -157,12 +174,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				277E5A4A220A2A840054B81E /* Animator.swift in Sources */,
-				2713A99B2209236700B149C5 /* Extensions.swift in Sources */,
-				27DD00252227287600DE9171 /* Icons.swift in Sources */,
-				277E5A46220A27A90054B81E /* Manager.swift in Sources */,
-				27D9BD0822090D1E008064DF /* Loaf.swift in Sources */,
-				277E5A48220A28580054B81E /* Controller.swift in Sources */,
+				84DA601F234329880088680A /* Animator.swift in Sources */,
+				84DA6022234329880088680A /* Loaf.swift in Sources */,
+				84DA601D234329880088680A /* Manager.swift in Sources */,
+				84DA601E234329880088680A /* Controller.swift in Sources */,
+				84DA6021234329880088680A /* Icons.swift in Sources */,
+				84DA6020234329880088680A /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +238,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -279,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -313,7 +330,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -339,7 +356,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.matschmid.Loaf;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

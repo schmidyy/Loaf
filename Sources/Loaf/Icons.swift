@@ -9,8 +9,6 @@
 
 import UIKit
 
-
-
 class Icons: NSObject {
     
     
