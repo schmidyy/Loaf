@@ -56,7 +56,15 @@ final public class Loaf {
         /// The width of the loaf
         let width: Width
 		
-        public init(backgroundColor: UIColor, textColor: UIColor = .white, tintColor: UIColor = .white, font: UIFont = UIFont.systemFont(ofSize: 14, weight: .medium), icon: UIImage? = Icon.info, textAlignment: NSTextAlignment = .left, iconAlignment: IconAlignment = .left, width: Width = .fixed(280)) {
+        public init(
+            backgroundColor: UIColor,
+            textColor: UIColor = .white,
+            tintColor: UIColor = .white,
+            font: UIFont = .systemFont(ofSize: 14, weight: .medium),
+            icon: UIImage? = Icon.info,
+            textAlignment: NSTextAlignment = .left,
+            iconAlignment: IconAlignment = .left,
+            width: Width = .fixed(280)) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
             self.tintColor = tintColor
