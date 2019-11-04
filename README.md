@@ -140,7 +140,7 @@ Don't forget to include `import Loaf` in every file you'd like to use Loaf
 ### Requirements
 
 - Swift 4.2+
-- iOS 11.0+
+- iOS 9.0+
 
 ### Contributing
 
