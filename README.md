@@ -99,7 +99,7 @@ Specify the presentation duration. When presenting a Loaf with `.show()`, a pres
 
 **⚠️ New in `0.5.0`:**
 
-- A completion handler can be specified in the Loaf `show()` function signature. This block will be called when the dismissal animation is completed, or when the Load is tapped. This completion handler is now passed with a enum representing whether the Loaf was tapped or timmed out. Here is an example of using a completion handler:
+- A completion handler can be specified in the Loaf `show()` function signature. This block will be called when the dismissal animation is completed, or when the Loaf is tapped. This completion handler is now passed with a enum representing whether the Loaf was tapped or timmed out. Here is an example of using a completion handler:
 
 ```swift
 Loaf(example.rawValue, sender: self).show { dismissalType in
