@@ -160,6 +160,8 @@ final public class Loaf {
     weak var sender: UIViewController?
     
     // MARK: - Public methods
+    
+    /// This initializer is intended for use with UIKit
     public init(_ message: String,
                 state: State = .info,
                 location: Location = .bottom,
@@ -172,6 +174,21 @@ final public class Loaf {
         self.presentingDirection = presentingDirection
         self.dismissingDirection = dismissingDirection
         self.sender = sender
+    }
+    
+    /// This initializer is intended for use with SwiftUI
+    public init(_ message: String,
+                state: State = .info,
+                location: Location = .bottom,
+                presentingDirection: Direction = .vertical,
+                dismissingDirection: Direction = .vertical,
+                duration: Duration = .average) {
+        self.message = message
+        self.state = state
+        self.location = location
+        self.presentingDirection = presentingDirection
+        self.dismissingDirection = dismissingDirection
+        self.duration = duration
     }
     
     /// Show the loaf for a specified duration. (Default is `.average`)
