@@ -9,13 +9,6 @@
 import SwiftUI
 
 @available(iOS 13.0, *)
-extension Loaf: Identifiable {
-    public var id: String {
-        return message
-    }
-}
-
-@available(iOS 13.0, *)
 public extension View {
     /// Presents a Loaf.
     ///
@@ -47,7 +40,7 @@ struct LoafView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: LoafWrappedViewController, context: Context) {
         if let loaf = self.loaf {
-            if let presentedLoaf = uiViewController.loaf, presentedLoaf.id != loaf.id {
+            if let presentedLoaf = uiViewController.loaf, presentedLoaf.message != loaf.message {
                 Loaf.dismiss(sender: uiViewController, animated: true)
             }
             
