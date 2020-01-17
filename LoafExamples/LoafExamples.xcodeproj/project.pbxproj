@@ -14,6 +14,9 @@
 		27865A7522090DD600145671 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7322090DD600145671 /* Main.storyboard */; };
 		27865A7722090DD700145671 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7622090DD700145671 /* Assets.xcassets */; };
 		27865A7A22090DD700145671 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27865A7822090DD700145671 /* LaunchScreen.storyboard */; };
+		CA69713623D10544008F1B47 /* SwiftUIExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69713523D10544008F1B47 /* SwiftUIExamples.swift */; };
+		CA69713823D11720008F1B47 /* ExampleLoaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA69713723D11720008F1B47 /* ExampleLoaf.swift */; };
+		CAFA466923D22707003C38AB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFA466823D22707003C38AB /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		27865A7922090DD700145671 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27865A7B22090DD700145671 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27865A8122090E1100145671 /* Loaf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Loaf.xcodeproj; path = ../Loaf/Loaf.xcodeproj; sourceTree = "<group>"; };
+		CA69713523D10544008F1B47 /* SwiftUIExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExamples.swift; sourceTree = "<group>"; };
+		CA69713723D11720008F1B47 /* ExampleLoaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleLoaf.swift; sourceTree = "<group>"; };
+		CAFA466823D22707003C38AB /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAFA466923D22707003C38AB /* SwiftUI.framework in Frameworks */,
 				274D14EA220B808800A53BA1 /* Loaf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +93,7 @@
 				27865A8122090E1100145671 /* Loaf.xcodeproj */,
 				27865A6E22090DD600145671 /* LoafExamples */,
 				27865A6D22090DD600145671 /* Products */,
+				CAFA466723D22707003C38AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				2741FAE92223403B00E313E0 /* Examples.swift */,
+				CA69713523D10544008F1B47 /* SwiftUIExamples.swift */,
+				CA69713723D11720008F1B47 /* ExampleLoaf.swift */,
 				27865A7322090DD600145671 /* Main.storyboard */,
 				276D5DD1220BB67E00877D18 /* Supporting Files */,
 				27865A7B22090DD700145671 /* Info.plist */,
@@ -114,6 +124,14 @@
 				27D90739220B7F5100C1D7DD /* Loaf.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CAFA466723D22707003C38AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CAFA466823D22707003C38AB /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +225,8 @@
 			files = (
 				2741FAEA2223403B00E313E0 /* Examples.swift in Sources */,
 				27865A7022090DD600145671 /* AppDelegate.swift in Sources */,
+				CA69713823D11720008F1B47 /* ExampleLoaf.swift in Sources */,
+				CA69713623D10544008F1B47 /* SwiftUIExamples.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
