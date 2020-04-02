@@ -32,18 +32,31 @@ final class Controller: UIPresentationController {
     
     override func presentationTransitionWillBegin() {
         guard let containerView = containerView else { return }
-        
+
+        var containerInsets: UIEdgeInsets
+        if #available(iOS 11, *) {
+            containerInsets = containerView.safeAreaInsets
+        } else {
+            let statusBarSize = UIApplication.shared.statusBarFrame.size
+            containerInsets = UIEdgeInsets(top: min(statusBarSize.width, statusBarSize.height), left: 0, bottom: 0, right: 0)
+        }
+
+        if let tabBar = loaf.sender?.parent as? UITabBarController{
+            containerInsets.bottom += tabBar.tabBar.frame.height
+        }
+
+        let prettyfierInset = CGFloat(10)
+        if containerInsets.bottom == 0 {
+            containerInsets.bottom += prettyfierInset
+        }
+        containerInsets.top += prettyfierInset
+
         let yPosition: CGFloat
         switch loaf.location {
         case .bottom:
-            let bottomMargin:CGFloat = containerView.frame.height - size.height
-            if let tabBar = loaf.sender?.parent as? UITabBarController{
-                yPosition = bottomMargin - 10 - tabBar.tabBar.frame.height
-            }else{
-                yPosition = bottomMargin - 40
-            }
+            yPosition = containerView.frame.origin.y + containerView.frame.height - size.height - containerInsets.bottom
         case .top:
-            yPosition = 50
+            yPosition = containerInsets.top
         }
         
         containerView.frame.origin = CGPoint(
