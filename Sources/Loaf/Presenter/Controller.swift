@@ -41,7 +41,9 @@ final class Controller: UIPresentationController {
             containerInsets = UIEdgeInsets(top: min(statusBarSize.width, statusBarSize.height), left: 0, bottom: 0, right: 0)
         }
 
-        if let tabBar = loaf.sender?.parent as? UITabBarController{
+        if let tabBar = loaf.sender?.parent as? UITabBarController {
+            containerInsets.bottom += tabBar.tabBar.frame.height
+        } else if let tabBar = loaf.sender?.parent?.parent as? UITabBarController {
             containerInsets.bottom += tabBar.tabBar.frame.height
         }
 
