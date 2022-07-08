@@ -40,7 +40,14 @@ extension Animator: UIViewControllerAnimatedTransitioning {
         
         switch presenting ? loaf.presentingDirection : loaf.dismissingDirection {
         case .vertical:
-            dismissedFrame.origin.y = (loaf.location == .bottom) ? controller.view.frame.height + 60 : -size.height - 60
+            switch loaf.location {
+            case .top:
+                dismissedFrame.origin.y = -size.height - 60
+            case .bottom:
+                dismissedFrame.origin.y = controller.view.bounds.height + 60
+            case .center:
+                dismissedFrame.origin.y = 60
+            }
         case .left:
             dismissedFrame.origin.x = -controller.view.frame.width * 2
         case .right:

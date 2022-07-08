@@ -95,16 +95,18 @@ final public class Loaf {
     ///
     /// - top: Top of the display
     /// - bottom: Bottom of the display
+    /// - center: Center of the display
     public enum Location {
         case top
         case bottom
+        case center
     }
     
     /// Defines either the presenting or dismissing direction of loaf. (Default is `.vertical`)
     ///
     /// - left: To / from the left
     /// - right: To / from the right
-    /// - vertical: To / from the top or bottom (depending on the location of the loaf)
+    /// - vertical: To / from the top, center or bottom (depending on the location of the loaf)
     public enum Direction {
         case left
         case right
