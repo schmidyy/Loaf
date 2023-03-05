@@ -12,7 +12,7 @@ import Loaf
 class Examples: UITableViewController {
     
     private enum Example: String, CaseIterable {
-        case success  = "An action was successfully completed - An action was successfully completed"
+        case success  = "An action was successfully completed"
         case error    = "An error has occured"
         case warning  = "A warning has occured"
         case info     = "This is some information"
