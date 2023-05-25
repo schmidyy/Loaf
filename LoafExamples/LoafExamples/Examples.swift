@@ -116,7 +116,25 @@ class Examples: UITableViewController {
         case .custom4:
             let redColor = UIColor(red: 204.0/255, green: 51.0/255, blue: 51.0/255, alpha: 1)
             let lightRedColor = UIColor(red: 255.0/255, green: 238.0/255, blue: 238.0/255, alpha: 1)
-            Loaf(example.rawValue, state: .custom(.init(backgroundColor: lightRedColor, textColor: redColor, tintColor: redColor, icon: UIImage(named: "moon"), iconSize: CGSize(width: 16, height: 16), textAlignment: .left, iconAlignment: .right, width: .screenPercentage(0.8), spaceBetweenTextAndIcon: 16, contentInsets: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))), sender: self).show()
+            Loaf(
+                example.rawValue,
+                state: .custom(
+                    .init(
+                        backgroundColor: lightRedColor,
+                        textColor: redColor,
+                        tintColor: redColor,
+                        icon: UIImage(named: "moon"),
+                        iconSize: CGSize(width: 16, height: 16),
+                        textAlignment: .left,
+                        iconAlignment: .right,
+                        width: .screenPercentage(0.8),
+                        spaceBetweenTextAndIcon: 16,
+                        contentInsets: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16),
+                        lineSpacing: 10.0
+                    )
+                ),
+                sender: self
+            ).show()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

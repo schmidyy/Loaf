@@ -64,6 +64,9 @@ final public class Loaf {
 
         /// Insets of the text plus the icon if provided.
         let contentInsets: UIEdgeInsets?
+
+        /// Space between lines. Optional. If not provided, it will use the default operating system value.
+        let lineSpacing: CGFloat?
 		
         public init(
             backgroundColor: UIColor,
@@ -76,7 +79,8 @@ final public class Loaf {
             iconAlignment: IconAlignment = .left,
             width: Width = .fixed(280),
             spaceBetweenTextAndIcon: CGFloat? = nil,
-            contentInsets: UIEdgeInsets? = nil) {
+            contentInsets: UIEdgeInsets? = nil,
+            lineSpacing: CGFloat? = nil) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
             self.tintColor = tintColor
@@ -88,6 +92,7 @@ final public class Loaf {
             self.width = width
             self.spaceBetweenTextAndIcon = spaceBetweenTextAndIcon
             self.contentInsets = contentInsets
+            self.lineSpacing = lineSpacing
         }
     }
     
@@ -274,8 +279,10 @@ final class LoafViewController: UIViewController {
         }
 
         var usesIcon = true
+        var lineSpacing: CGFloat?
         if case let Loaf.State.custom(style) = loaf.state {
             usesIcon = style.icon != nil
+            lineSpacing = style.lineSpacing
         }
 
         var textWidth: CGFloat = loafWidth - contentInsets.left - contentInsets.right
@@ -283,7 +290,10 @@ final class LoafViewController: UIViewController {
             textWidth = textWidth - iconSize.width - spaceBetweenTextAndIcon
         }
 
-        let textHeight = max(toast.message.heightWithConstrainedWidth(width: textWidth, font: font), 40)
+        let textHeight = max(
+            toast.message.heightWithConstrainedWidth(width: textWidth, font: font, lineSpacing: lineSpacing),
+            40
+        )
         preferredContentSize = CGSize(width: loafWidth, height: textHeight + contentInsets.top + contentInsets.bottom + 1)
     }
     
@@ -331,6 +341,9 @@ final class LoafViewController: UIViewController {
             label.textColor = style.textColor
             label.font = style.font
             constrainWithIconAlignment(style.iconAlignment, showsIcon: imageView.image != nil)
+            if let lineSpacing = style.lineSpacing {
+                label.setLineSpacing(lineSpacing: lineSpacing)
+            }
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -430,4 +443,3 @@ private struct Queue<T> {
         }
     }
 }
-
