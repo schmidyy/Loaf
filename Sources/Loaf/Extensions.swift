@@ -20,9 +20,22 @@ extension UIViewController {
 }
 
 extension String {
-    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
+    func heightWithConstrainedWidth(width: CGFloat, font: UIFont, lineSpacing: CGFloat?) -> CGFloat {
+        var attributes: [NSAttributedString.Key : Any] = [:]
+        if let lineSpacing = lineSpacing {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = lineSpacing
+            attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
+        }
+        attributes[NSAttributedString.Key.font] = font
+
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
+        let boundingBox = self.boundingRect(
+            with: constraintRect,
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: attributes,
+            context: nil
+        )
         return boundingBox.height
     }
 }
@@ -44,5 +57,32 @@ extension UIColor {
             (a, r, g, b) = (255, 0, 0, 0)
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+    }
+}
+
+extension UILabel {
+    func setLineSpacing(lineSpacing: CGFloat) {
+        // Create a mutable attributed string with the label's text
+        guard let labelText = text else { return }
+        let attributedString = NSMutableAttributedString(string: labelText)
+
+        // Create an instance of NSMutableParagraphStyle to configure the paragraph style
+        let paragraphStyle = NSMutableParagraphStyle()
+
+        // Set the desired line spacing value
+        paragraphStyle.lineSpacing = lineSpacing
+
+        // Preserve existing label properties
+        let labelFont = font ?? UIFont.systemFont(ofSize: 17.0) // Default font size
+        let labelColor = textColor ?? UIColor.black
+        let labelAlignment = textAlignment
+
+        // Apply the label properties to the attributed string
+        attributedString.addAttribute(.font, value: labelFont, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(.foregroundColor, value: labelColor, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+
+        // Set the attributed string and preserved properties on the label
+        self.attributedText = attributedString
     }
 }

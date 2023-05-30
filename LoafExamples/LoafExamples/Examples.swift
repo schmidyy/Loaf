@@ -28,11 +28,12 @@ class Examples: UITableViewController {
         case custom1  = "This will showcase using custom colors and font"
         case custom2  = "This will showcase using right icon alignment"
         case custom3  = "This will showcase using no icon and 80% screen size width"
+        case custom4  = "This will showcase custom spacing, content insets, and icon size"
 		
         static let grouped: [[Example]] = [[.success, .error, .warning, .info],
                                            [.bottom, .top],
                                            [.vertical, .left, .right, .mix],
-                                           [.custom1, .custom2, .custom3]]
+                                           [.custom1, .custom2, .custom3, custom4]]
     }
     
     private var isDarkMode = false
@@ -112,6 +113,28 @@ class Examples: UITableViewController {
             Loaf(example.rawValue, state: .custom(.init(backgroundColor: .purple, iconAlignment: .right)), sender: self).show()
         case .custom3:
             Loaf(example.rawValue, state: .custom(.init(backgroundColor: .black, icon: nil, textAlignment: .center, width: .screenPercentage(0.8))), sender: self).show()
+        case .custom4:
+            let redColor = UIColor(red: 204.0/255, green: 51.0/255, blue: 51.0/255, alpha: 1)
+            let lightRedColor = UIColor(red: 255.0/255, green: 238.0/255, blue: 238.0/255, alpha: 1)
+            Loaf(
+                example.rawValue,
+                state: .custom(
+                    .init(
+                        backgroundColor: lightRedColor,
+                        textColor: redColor,
+                        tintColor: redColor,
+                        icon: UIImage(named: "moon"),
+                        iconSize: CGSize(width: 16, height: 16),
+                        textAlignment: .left,
+                        iconAlignment: .right,
+                        width: .screenPercentage(0.8),
+                        spaceBetweenTextAndIcon: 16,
+                        contentInsets: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16),
+                        lineSpacing: 10.0
+                    )
+                ),
+                sender: self
+            ).show()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

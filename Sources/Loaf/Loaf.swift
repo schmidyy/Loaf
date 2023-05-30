@@ -46,7 +46,10 @@ final public class Loaf {
         
         /// The icon on the loaf
         let icon: UIImage?
-        
+
+        /// The size of the icon
+        let iconSize: CGSize?
+
         /// The alignment of the text within the Loaf
         let textAlignment: NSTextAlignment
         
@@ -55,6 +58,15 @@ final public class Loaf {
 		
         /// The width of the loaf
         let width: Width
+
+        /// When an icon is present, this is the separation between the icon and text.
+        let spaceBetweenTextAndIcon: CGFloat?
+
+        /// Insets of the text plus the icon if provided.
+        let contentInsets: UIEdgeInsets?
+
+        /// Space between lines. Optional. If not provided, it will use the default operating system value.
+        let lineSpacing: CGFloat?
 		
         public init(
             backgroundColor: UIColor,
@@ -62,17 +74,25 @@ final public class Loaf {
             tintColor: UIColor = .white,
             font: UIFont = .systemFont(ofSize: 14, weight: .medium),
             icon: UIImage? = Icon.info,
+            iconSize: CGSize? = nil,
             textAlignment: NSTextAlignment = .left,
             iconAlignment: IconAlignment = .left,
-            width: Width = .fixed(280)) {
+            width: Width = .fixed(280),
+            spaceBetweenTextAndIcon: CGFloat? = nil,
+            contentInsets: UIEdgeInsets? = nil,
+            lineSpacing: CGFloat? = nil) {
             self.backgroundColor = backgroundColor
             self.textColor = textColor
             self.tintColor = tintColor
             self.font = font
             self.icon = icon
+            self.iconSize = iconSize
             self.textAlignment = textAlignment
             self.iconAlignment = iconAlignment
             self.width = width
+            self.spaceBetweenTextAndIcon = spaceBetweenTextAndIcon
+            self.contentInsets = contentInsets
+            self.lineSpacing = lineSpacing
         }
     }
     
@@ -225,6 +245,11 @@ protocol LoafDelegate: AnyObject {
 }
 
 final class LoafViewController: UIViewController {
+
+    static let defaultIconSize = CGSize(width: 28, height: 28)
+    static let defaultSpaceBetweenTextAndIcon: CGFloat = 10.0
+    static let defaultContentInsets = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10)
+
     var loaf: Loaf
     
     let label = UILabel()
@@ -239,22 +264,37 @@ final class LoafViewController: UIViewController {
         self.transDelegate = Manager(loaf: toast, size: .zero)
         super.init(nibName: nil, bundle: nil)
 		
-        var width: CGFloat?
+        var loafWidth: CGFloat = 280
         if case let Loaf.State.custom(style) = loaf.state {
             self.font = style.font
             self.textAlignment = style.textAlignment
 			
             switch style.width {
             case .fixed(let value):
-                width = value
+                loafWidth = value
             case .screenPercentage(let percentage):
                 guard 0...1 ~= percentage else { return }
-                width = UIScreen.main.bounds.width * percentage
+                loafWidth = UIScreen.main.bounds.width * percentage
             }
         }
-        
-        let height = max(toast.message.heightWithConstrainedWidth(width: 240, font: font) + 12, 40)
-        preferredContentSize = CGSize(width: width ?? 280, height: height)
+
+        var usesIcon = true
+        var lineSpacing: CGFloat?
+        if case let Loaf.State.custom(style) = loaf.state {
+            usesIcon = style.icon != nil
+            lineSpacing = style.lineSpacing
+        }
+
+        var textWidth: CGFloat = loafWidth - contentInsets.left - contentInsets.right
+        if usesIcon {
+            textWidth = textWidth - iconSize.width - spaceBetweenTextAndIcon
+        }
+
+        let textHeight = max(
+            toast.message.heightWithConstrainedWidth(width: textWidth, font: font, lineSpacing: lineSpacing),
+            40
+        )
+        preferredContentSize = CGSize(width: loafWidth, height: textHeight + contentInsets.top + contentInsets.bottom + 1)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -301,6 +341,9 @@ final class LoafViewController: UIViewController {
             label.textColor = style.textColor
             label.font = style.font
             constrainWithIconAlignment(style.iconAlignment, showsIcon: imageView.image != nil)
+            if let lineSpacing = style.lineSpacing {
+                label.setLineSpacing(lineSpacing: lineSpacing)
+            }
         }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -320,7 +363,7 @@ final class LoafViewController: UIViewController {
             self?.loaf.completionHandler?(.tapped)
         }
     }
-    
+
     private func constrainWithIconAlignment(_ alignment: Loaf.Style.IconAlignment, showsIcon: Bool = true) {
         view.addSubview(label)
         
@@ -330,37 +373,58 @@ final class LoafViewController: UIViewController {
             switch alignment {
             case .left:
                 NSLayoutConstraint.activate([
-                    imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                    imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: contentInsets.left),
                     imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                    imageView.heightAnchor.constraint(equalToConstant: 28),
-                    imageView.widthAnchor.constraint(equalToConstant: 28),
+                    imageView.heightAnchor.constraint(equalToConstant: iconSize.height),
+                    imageView.widthAnchor.constraint(equalToConstant: iconSize.width),
                     
-                    label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-                    label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4),
-                    label.topAnchor.constraint(equalTo: view.topAnchor),
-                    label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                    label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: spaceBetweenTextAndIcon),
+                    label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -contentInsets.right),
+                    label.topAnchor.constraint(equalTo: view.topAnchor, constant: contentInsets.top),
+                    label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -contentInsets.bottom)
                 ])
             case .right:
                 NSLayoutConstraint.activate([
-                    imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                    imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -contentInsets.right),
                     imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                    imageView.heightAnchor.constraint(equalToConstant: 28),
-                    imageView.widthAnchor.constraint(equalToConstant: 28),
+                    imageView.heightAnchor.constraint(equalToConstant: iconSize.height),
+                    imageView.widthAnchor.constraint(equalToConstant: iconSize.width),
                     
-                    label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                    label.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -4),
-                    label.topAnchor.constraint(equalTo: view.topAnchor),
-                    label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                    label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: contentInsets.left),
+                    label.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -spaceBetweenTextAndIcon),
+                    label.topAnchor.constraint(equalTo: view.topAnchor, constant: contentInsets.top),
+                    label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -contentInsets.bottom)
                 ])
             }
         } else {
             NSLayoutConstraint.activate([
-                label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-                label.topAnchor.constraint(equalTo: view.topAnchor),
-                label.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: contentInsets.left),
+                label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -contentInsets.right),
+                label.topAnchor.constraint(equalTo: view.topAnchor, constant: contentInsets.top),
+                label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -contentInsets.bottom)
             ])
         }
+    }
+
+    private var iconSize: CGSize {
+        if case let .custom(style) = loaf.state {
+            return style.iconSize ?? Self.defaultIconSize
+        }
+        return Self.defaultIconSize
+    }
+
+    private var spaceBetweenTextAndIcon: CGFloat {
+        if case let .custom(style) = loaf.state {
+            return style.spaceBetweenTextAndIcon ?? Self.defaultSpaceBetweenTextAndIcon
+        }
+        return Self.defaultSpaceBetweenTextAndIcon
+    }
+
+    private var contentInsets: UIEdgeInsets {
+        if case let .custom(style) = loaf.state {
+            return style.contentInsets ?? Self.defaultContentInsets
+        }
+        return Self.defaultContentInsets
     }
 }
 
@@ -379,4 +443,3 @@ private struct Queue<T> {
         }
     }
 }
-
